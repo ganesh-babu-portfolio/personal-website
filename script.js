@@ -1,6 +1,6 @@
 /* ==========================================================================
    Ganesh Babu Dushyendiran - Senior Marketing Operations Architect Portfolio
-   Refactored Interactive Engine & Scroll Reveal Animations
+   Refactored Interactive Engine & Formspree Integration
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 7. Discovery Call Modal Controls
+  // 7. Discovery Call Modal Controls & Formspree Handler
   const modalOverlay = document.getElementById('discoveryModal');
   const openModalBtns = document.querySelectorAll('.open-modal');
   const closeModalBtn = document.getElementById('closeModal');
@@ -149,25 +149,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Form Submission Handler
+  // Formspree Asynchronous Form Submission
   if (discoveryForm) {
-    discoveryForm.addEventListener('submit', (e) => {
+    discoveryForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = discoveryForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
 
-      submitBtn.textContent = 'Submitting Request...';
+      submitBtn.textContent = 'Sending Request...';
       submitBtn.disabled = true;
 
-      setTimeout(() => {
-        alert('Thank you! Your discovery call request has been received. Ganesh will review your RevOps architecture and get back to you within 24 hours.');
-        discoveryForm.reset();
+      const formData = new FormData(discoveryForm);
+
+      try {
+        const response = await fetch(discoveryForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          alert('Thank you! Your strategy call request has been sent to Ganesh. He will review your notes and reach out to you shortly.');
+          discoveryForm.reset();
+          if (modalOverlay) {
+            modalOverlay.classList.remove('open');
+          }
+        } else {
+          alert('Oops! There was a problem submitting your request. Please try emailing directly at ganeshbabu.dushy@gmail.com.');
+        }
+      } catch (error) {
+        alert('Oops! Network error. Please try emailing directly at ganeshbabu.dushy@gmail.com.');
+      } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        if (modalOverlay) {
-          modalOverlay.classList.remove('open');
-        }
-      }, 1200);
+      }
     });
   }
 });

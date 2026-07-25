@@ -835,32 +835,32 @@
     </div>
   </section>
 
-  <!-- DISCOVERY CALL MODAL -->
+  <!-- DISCOVERY CALL MODAL (Formspree Integration) -->
   <div class="modal-overlay" id="discoveryModal">
     <div class="modal-box">
       <span class="modal-close" id="closeModal">&times;</span>
       <h3 class="modal-title">Book a Free 30-Minute Strategy Call</h3>
       <p class="modal-sub">Schedule a complimentary 30-minute 1-on-1 consultation with Ganesh to review your MarTech & RevOps architecture.</p>
 
-      <form id="discoveryForm">
+      <form action="https://formspree.io/f/mnjeogjk" method="POST" id="discoveryForm">
         <div class="form-group">
           <label class="form-label" for="fullName">Your Full Name</label>
-          <input type="text" id="fullName" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+          <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g. Sarah Jenkins" required>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="workEmail">Work Email</label>
-          <input type="email" id="workEmail" class="form-input" placeholder="e.g. sarah@company.com" required>
+          <input type="email" id="workEmail" name="workEmail" class="form-input" placeholder="e.g. sarah@company.com" required>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="companyName">Company & Team Size</label>
-          <input type="text" id="companyName" class="form-input" placeholder="e.g. Acme Corp (100-500 employees)" required>
+          <input type="text" id="companyName" name="companyName" class="form-input" placeholder="e.g. Acme Corp (100-500 employees)" required>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="serviceInterest">Primary Discussion Topic</label>
-          <select id="serviceInterest" class="form-select" required>
+          <select id="serviceInterest" name="discussionTopic" class="form-select" required>
             <option value="pardot">Salesforce Pardot Implementation / Migration</option>
             <option value="abm">ABM Platforms (Demandbase & Dreamdata Setup)</option>
             <option value="revops">Revenue Operations & Lead Lifecycle Design</option>
@@ -873,7 +873,7 @@
 
         <div class="form-group">
           <label class="form-label" for="projectOverview">Project Goals / Questions for Call</label>
-          <textarea id="projectOverview" class="form-textarea" rows="3" placeholder="Briefly share your current challenges or questions for our 30-minute call..."></textarea>
+          <textarea id="projectOverview" name="projectOverview" class="form-textarea" rows="3" placeholder="Briefly share your current challenges or questions for our 30-minute call..."></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
