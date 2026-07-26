@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Migrating from Pardot to Marketing Cloud Next: A Strategic Roadmap</title>
+  <meta name="description" content="A detailed roadmap and strategic migration framework to transition B2B Marketing Operations from legacy Pardot / Account Engagement to Salesforce Marketing Cloud Next (Growth/Advanced).">
+  <meta name="keywords" content="Pardot Migration, Marketing Cloud Next Migration, Account Engagement to Marketing Cloud Growth, Salesforce Data Cloud migration, B2B MarTech roadmap">
+  <meta name="author" content="Ganesh Babu Dushyendiran">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Migrating from Pardot to Marketing Cloud Next - Ganesh Babu D">
+  <meta property="og:description" content="Discover key milestones, asset mapping, and CRM schema considerations for migrating from Pardot to Salesforce's core platform marketing.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="../../Ganesh Image 1.png">
+  
+  <!-- Typography Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+  <style>
+    .scroll-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 1010;
+      background-color: transparent;
+    }
+    .scroll-progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: var(--brand-accent);
+      transition: width 0.1s ease-out;
+    }
+    .article-container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 4rem 1.5rem;
+    }
+    .article-header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 2rem;
+    }
+    .article-category {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--brand-accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .article-h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 768px) {
+      .article-h1 {
+        font-size: 3rem;
+      }
+    }
+    .article-author-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .author-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-subtle);
+    }
+    .author-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .author-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .author-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .author-title {
+      font-size: 0.775rem;
+      color: var(--text-tertiary);
+    }
+    .article-body {
+      font-size: 1.075rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+    .article-body h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 2.5rem 0 1rem 0;
+      letter-spacing: -0.02em;
+    }
+    .article-body h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 2rem 0 0.75rem 0;
+    }
+    .article-body ul, .article-body ol {
+      margin: 0 0 1.5rem 1.5rem;
+    }
+    .article-body li {
+      margin-bottom: 0.5rem;
+    }
+    .illustration-box {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 2rem 0;
+      background-color: #FAF9F6;
+    }
+    .callout-box {
+      padding: 1.5rem;
+      background-color: var(--bg-accent-light);
+      border-left: 4px solid var(--brand-accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 2rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .article-footer-cta {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 4rem;
+      box-shadow: var(--shadow-md);
+    }
+    .related-articles-section {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 3rem;
+      margin-top: 4rem;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .related-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: all var(--transition-fast);
+    }
+    .related-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+    }
+    .related-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../../index.html" class="brand-logo">
+        <div class="brand-icon">GD</div>
+        <span>Ganesh Babu D</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="../../index.html#about" class="nav-link">About</a></li>
+        <li><a href="../../index.html#projects" class="nav-link">Case Studies</a></li>
+        <li><a href="../../index.html#expertise" class="nav-link">Services & Stack</a></li>
+        <li><a href="../../index.html#certifications" class="nav-link">Certifications</a></li>
+        <li><a href="../../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="../index.html" class="nav-link active">Blog</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="../../GaneshBabuDushyendiran_Resume.pdf" target="_blank" class="btn btn-secondary btn-sm">Resume PDF</a>
+        <a href="#contact" class="btn btn-primary btn-sm open-modal">Book Free 30-Min Call</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../../index.html#about" class="nav-link">About</a>
+    <a href="../../index.html#projects" class="nav-link">Case Studies</a>
+    <a href="../../index.html#expertise" class="nav-link">Services & Stack</a>
+    <a href="../../index.html#certifications" class="nav-link">Certifications</a>
+    <a href="../../index.html#faq" class="nav-link">FAQ</a>
+    <a href="../index.html" class="nav-link active">Blog</a>
+    <a href="../../GaneshBabuDushyendiran_Resume.pdf" target="_blank" class="btn btn-secondary btn-sm">Download Resume</a>
+    <a href="#contact" class="btn btn-primary btn-sm open-modal">Book Free 30-Min Call</a>
+  </div>
+
+  <!-- ==========================================================================
+       ARTICLE CONTENT PAGE
+       ========================================================================== -->
+  <article class="article-container">
+    <header class="article-header">
+      <span class="article-category">Migrations</span>
+      <h1 class="article-h1">Migrating from Pardot to Marketing Cloud Next: A Strategic Roadmap</h1>
+      
+      <div class="article-author-card">
+        <div class="author-img">
+          <img src="../../Ganesh Image 1.png" alt="Ganesh Babu D">
+        </div>
+        <div class="author-info">
+          <span class="author-name">Ganesh Babu Dushyendiran</span>
+          <span class="author-title">Senior MarTech Architect | July 25, 2026 • 7 Min Read</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <p>
+        For nearly a decade, Salesforce Account Engagement (Pardot) has been the cornerstone of B2B marketing automation within the Salesforce ecosystem. However, Salesforce’s strategic focus has shifted to the core platform, unifying automation capabilities under the **Marketing Cloud Growth** and **Marketing Cloud Advanced** packages.
+      </p>
+      
+      <p>
+        This transition is more than a rename — it is a complete replatforming. Legacy Pardot operates on its own backend database, syncing with Salesforce CRM using a connector bridge. Marketing Cloud Growth runs **natively** on Salesforce CRM using Data Cloud schemas, Flow Builder, and unified Einstein AI.
+      </p>
+
+      <div class="illustration-box">
+        <!-- SVG diagram comparing legacy vs core MC Next -->
+        <svg style="width:100%; height:200px;" viewBox="0 0 800 200" fill="none">
+          <rect width="800" height="200" fill="#F8FAFC"/>
+          <!-- Legacy Model -->
+          <rect x="50" y="40" width="130" height="120" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="2"/>
+          <text x="115" y="105" fill="#64748B" font-family="sans-serif" font-weight="700" font-size="14" text-anchor="middle">Pardot DB</text>
+          
+          <path d="M190 100h80" stroke="#EF4444" stroke-width="3" stroke-dasharray="6 6"/>
+          <text x="230" y="90" fill="#EF4444" font-family="sans-serif" font-weight="700" font-size="11" text-anchor="middle">Sync Bridge</text>
+          
+          <rect x="280" y="40" width="130" height="120" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="2"/>
+          <text x="345" y="105" fill="#64748B" font-family="sans-serif" font-weight="700" font-size="14" text-anchor="middle">Salesforce CRM</text>
+          
+          <!-- Unified Model -->
+          <rect x="490" y="40" width="260" height="120" rx="12" fill="#DBEAFE" stroke="#93C5FD" stroke-width="2"/>
+          <rect x="510" y="60" width="220" height="35" rx="6" fill="#1E40AF"/>
+          <text x="620" y="82" fill="#FFF" font-family="sans-serif" font-weight="700" font-size="12" text-anchor="middle">Core Platform CRM</text>
+          
+          <rect x="510" y="105" width="220" height="35" rx="6" fill="#EFF6FF" stroke="#3B82F6"/>
+          <text x="620" y="127" fill="#1E40AF" font-family="sans-serif" font-weight="700" font-size="12" text-anchor="middle">Data Cloud & MC Growth</text>
+        </svg>
+      </div>
+
+      <h2>Three Major Architectural Differences to Master</h2>
+      <p>
+        Before migrating metadata or assets, your operations team must understand these fundamental architecture shifts:
+      </p>
+      
+      <h3>1. Prospects vs. Unified Contacts</h3>
+      <p>
+        In Pardot, your database consists of "Prospects" who must sync to Leads or Contacts in Salesforce. In Marketing Cloud Growth, there are no independent prospects. Segmentations run directly on **Unified Individual Profiles** inside Salesforce Data Cloud, drawing from your entire Salesforce Contact database and external systems.
+      </p>
+      
+      <h3>2. Engagement Studio vs. Salesforce Flows</h3>
+      <p>
+        Pardot's visual campaign builder, Engagement Studio, is replaced by Salesforce **Flow Builder** (specifically Campaign Journeys). Flows give you access to all core CRM objects and automation tools, eliminating the limitations of Pardot's strict step actions.
+      </p>
+
+      <h3>3. Content Builder vs. CMS Workspace</h3>
+      <p>
+        Pardot files, emails, and layouts move to the Salesforce **Unified Experience Cloud CMS** and native Content Builder. Email templates are built directly within the Salesforce lightning builder interface.
+      </p>
+
+      <h2>The 5-Step Migration Checklist</h2>
+      <ol>
+        <li><strong>Audit Existing Data:</strong> Archive prospects who have not engaged in over 365 days. Clean custom fields in Pardot to ensure you only map active, business-critical attributes.</li>
+        <li><strong>Set Up Unified CMS:</strong> Configure your Salesforce CMS channel first. Upload brand assets, logo files, and marketing media before drafting new email templates.</li>
+        <li><strong>Rebuild Lead Lifecycle in Flow:</strong> Translate your legacy Pardot scoring rules and automation rules into native Salesforce Flow automations.</li>
+        <li><strong>Establish Data Cloud Ingestion:</strong> Connect your core CRM Lead, Contact, and Campaign Member objects into Salesforce Data Cloud to enable real-time segment generation.</li>
+        <li><strong>Warm Your Sending Domain:</strong> IP addresses and sending reputation do not transfer directly. Begin sub-domain warming protocols in MC Next with low-volume, high-engagement campaigns.</li>
+      </ol>
+
+      <div class="callout-box">
+        <strong>Strategic Note:</strong> Do not attempt a quick lift-and-shift migration. Take this transition as an opportunity to restructure your campaign hierarchies and optimize dirty custom fields that have accumulated in your CRM over the years.
+      </div>
+    </div>
+
+    <!-- Article Footer CTA -->
+    <div class="article-footer-cta">
+      <h3 class="author-name" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Migrating Your Enterprise Stack?</h3>
+      <p class="timeline-desc" style="margin-bottom: 1.5rem; max-width: 540px; margin-left: auto; margin-right: auto;">
+        I have led Pardot migrations involving 1M+ active records across global enterprise teams. Let's align your migration playbook in a free strategy call.
+      </p>
+      <button class="btn btn-primary open-modal">Book Free 30-Minute Call</button>
+    </div>
+
+    <!-- Related Articles -->
+    <section class="related-articles-section">
+      <h4 class="timeline-header" style="border:none; margin:0;">Next Up in Marketing Cloud Next</h4>
+      <div class="related-grid">
+        <div class="related-card">
+          <span class="article-category">Setup & SDO</span>
+          <a href="./how-to-spin-up-marketing-cloud-next-org.html" class="related-title">
+            How to Spin Up a Salesforce Marketing Cloud Next Org: SDO and Trailhead Playgrounds
+          </a>
+          <span class="author-title">5 Min Read</span>
+        </div>
+        <div class="related-card" style="background-color: var(--bg-main); opacity: 0.8;">
+          <span class="article-category">Strategy</span>
+          <span class="related-title">
+            [Upcoming] Designing Core Platform Lead Lifecycles with Data Cloud
+          </span>
+          <span class="author-title">Expected Q4 2026</span>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <!-- ==========================================================================
+       MINIMAL EXECUTIVE FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">GD</div>
+            <span>Ganesh Babu Dushyendiran</span>
+          </div>
+          <p class="footer-desc">
+            Senior Marketing Operations Architect & Salesforce Specialist. Transforming complex B2B martech stacks into scalable revenue engines.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../../index.html#about">Executive Background</a></li>
+            <li><a href="../../index.html#projects">Case Studies</a></li>
+            <li><a href="../../index.html#expertise">Capabilities & Stack</a></li>
+            <li><a href="../../index.html#certifications">Certifications</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services & Case Studies</h4>
+          <ul class="footer-links">
+            <li><a href="../../index.html#projects">Temenos Case Study</a></li>
+            <li><a href="../../index.html#projects">HCLTech Migration</a></li>
+            <li><a href="../../index.html#projects">RPM Carboline Rollout</a></li>
+            <li><a href="../../index.html#certifications">Salesforce Certifications</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:ganeshbabu.dushy@gmail.com">ganeshbabu.dushy@gmail.com</a></li>
+            <li><a href="tel:+918508063729">+91 8508063729</a></li>
+            <li><a href="https://www.linkedin.com/in/ganesh-babu-d-6263b810a" target="_blank">LinkedIn Profile</a></li>
+            <li><a href="../../GaneshBabuDushyendiran_Resume.pdf" target="_blank">Download Resume PDF</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Ganesh Babu Dushyendiran. All rights reserved.</span>
+        <span>Salesforce, Pardot, and Sales Cloud are registered trademarks of Salesforce, Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DISCOVERY CALL MODAL (Formspree Integration) -->
+  <div class="modal-overlay" id="discoveryModal">
+    <div class="modal-box">
+      <span class="modal-close" id="closeModal">&times;</span>
+      <h3 class="modal-title">Book a Free 30-Minute Strategy Call</h3>
+      <p class="modal-sub">Schedule a complimentary 30-minute 1-on-1 consultation with Ganesh to review your MarTech & RevOps architecture.</p>
+
+      <form action="https://formspree.io/f/mnjeogjk" method="POST" id="discoveryForm">
+        <div class="form-group">
+          <label class="form-label" for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="workEmail">Work Email</label>
+          <input type="email" id="workEmail" name="workEmail" class="form-input" placeholder="e.g. sarah@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="companyName">Company</label>
+          <input type="text" id="companyName" name="companyName" class="form-input" placeholder="e.g. Acme Corp" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="serviceInterest">Primary Discussion Topic</label>
+          <select id="serviceInterest" name="discussionTopic" class="form-select" required>
+            <option value="pardot">Salesforce Pardot Implementation / Migration</option>
+            <option value="abm">ABM Platforms (Demandbase & Dreamdata Setup)</option>
+            <option value="revops">Revenue Operations & Lead Lifecycle Design</option>
+            <option value="salesforce">Salesforce Sales Cloud Architecture</option>
+            <option value="hubspot">HubSpot CRM & Automation Setup</option>
+            <option value="ai">AI Enablement & Data Enrichment (Clay)</option>
+            <option value="audit">MarTech Stack Audit & Sync Optimization</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="projectOverview">Project Goals / Questions for Call</label>
+          <textarea id="projectOverview" name="projectOverview" class="form-textarea" rows="3" placeholder="Briefly share your current challenges or questions for our 30-minute call..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+          Schedule Free 30-Min Call
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive Scroll Progress Indicator Script -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+  </script>
+
+  <!-- Modular Script File -->
+  <script src="../../script.js"></script>
+</body>
+</html>

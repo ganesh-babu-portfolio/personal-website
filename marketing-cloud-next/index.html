@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Cloud Next | Blog & Thought Leadership - Ganesh Babu D</title>
+  <meta name="description" content="Thought leadership, tutorials, and strategy guides on Salesforce Marketing Cloud Next, setup SDO platforms, and Pardot migrations by MarTech Architect Ganesh Babu D.">
+  <meta name="keywords" content="Marketing Cloud Next, Salesforce Marketing Cloud Growth, SDO Setup, Partner SDO, Pardot Migration, Marketing Automation Blog, Revenue Operations, CRM Strategy">
+  <meta name="author" content="Ganesh Babu Dushyendiran">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Marketing Cloud Next Hub | Ganesh Babu D">
+  <meta property="og:description" content="Expert tutorials and strategy guides on Salesforce's next-generation marketing cloud platforms and Pardot migration frameworks.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../Ganesh Image 1.png">
+  
+  <!-- Typography Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="../styles.css">
+  
+  <!-- Custom Hub Styles -->
+  <style>
+    .blog-hero {
+      padding: 6rem 0 3.5rem 0;
+      background: radial-gradient(circle at 10% 20%, rgba(219, 234, 254, 0.3) 0%, rgba(250, 250, 252, 0) 50%);
+    }
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 960px) {
+      .featured-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+    .featured-img-box {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      height: 320px;
+      position: relative;
+      background-color: var(--bg-subtle);
+    }
+    .featured-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .featured-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 10;
+    }
+    .article-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+    @media (min-width: 768px) {
+      .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .article-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-normal);
+      box-shadow: var(--shadow-sm);
+    }
+    .article-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .article-thumb {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      background-color: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .article-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-normal);
+    }
+    .article-card:hover .article-thumb img {
+      transform: scale(1.03);
+    }
+    .article-content {
+      padding: 1.75rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .article-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .article-title-link {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      display: block;
+      transition: color var(--transition-fast);
+    }
+    .article-card:hover .article-title-link {
+      color: var(--brand-primary);
+    }
+    .article-excerpt {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+    .read-more-btn {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--brand-accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .read-more-btn svg {
+      transition: transform var(--transition-fast);
+    }
+    .article-card:hover .read-more-btn svg {
+      transform: translateX(3px);
+    }
+    .newsletter-card {
+      background: linear-gradient(135deg, var(--bg-accent-light) 0%, rgba(219, 234, 254, 0.2) 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 5rem auto;
+    }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 1.5rem auto 0 auto;
+    }
+    @media (min-width: 640px) {
+      .newsletter-form {
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon">GD</div>
+        <span>Ganesh Babu D</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="../index.html#about" class="nav-link">About</a></li>
+        <li><a href="../index.html#projects" class="nav-link">Case Studies</a></li>
+        <li><a href="../index.html#expertise" class="nav-link">Services & Stack</a></li>
+        <li><a href="../index.html#certifications" class="nav-link">Certifications</a></li>
+        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#" class="nav-link active">Blog</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="../GaneshBabuDushyendiran_Resume.pdf" target="_blank" class="btn btn-secondary btn-sm">Resume PDF</a>
+        <a href="#contact" class="btn btn-primary btn-sm open-modal">Book Free 30-Min Call</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html#about" class="nav-link">About</a>
+    <a href="../index.html#projects" class="nav-link">Case Studies</a>
+    <a href="../index.html#expertise" class="nav-link">Services & Stack</a>
+    <a href="../index.html#certifications" class="nav-link">Certifications</a>
+    <a href="../index.html#faq" class="nav-link">FAQ</a>
+    <a href="#" class="nav-link active">Blog</a>
+    <a href="../GaneshBabuDushyendiran_Resume.pdf" target="_blank" class="btn btn-secondary btn-sm">Download Resume</a>
+    <a href="#contact" class="btn btn-primary btn-sm open-modal">Book Free 30-Min Call</a>
+  </div>
+
+  <!-- ==========================================================================
+       BLOG HERO SECTION
+       ========================================================================== -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Marketing Cloud Next Hub</span>
+        <h1 class="section-title">Guides, Strategy & Org Architectures</h1>
+        <p class="section-description">
+          Insights on Salesforce's core platform marketing technologies, migration blueprints, and AI productivity models.
+        </p>
+      </div>
+
+      <!-- FEATURED ARTICLE CARD -->
+      <div class="featured-grid reveal-item">
+        <div class="featured-img-box">
+          <span class="badge badge-brand featured-tag">Setup & Sandbox</span>
+          <!-- Dynamic CRM Illustration -->
+          <svg style="width:100%; height:100%; background: #FAF9F6;" viewBox="0 0 800 400" fill="none">
+            <rect width="800" height="400" fill="#F8FAFC"/>
+            <circle cx="400" cy="200" r="140" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/>
+            <circle cx="400" cy="200" r="100" fill="#DBEAFE" stroke="#93C5FD" stroke-width="2"/>
+            <path d="M300 200h200M400 100v200" stroke="#2563EB" stroke-width="4" stroke-dasharray="8 8"/>
+            <rect x="350" y="170" width="100" height="60" rx="8" fill="#1E40AF" filter="drop-shadow(0 4px 12px rgba(30,64,175,0.2))"/>
+            <text x="400" y="205" fill="#FFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" text-anchor="middle">MC NEXT</text>
+            <circle cx="400" cy="80" r="12" fill="#2563EB"/>
+            <circle cx="280" cy="200" r="12" fill="#10B981"/>
+            <circle cx="520" cy="200" r="12" fill="#F59E0B"/>
+          </svg>
+        </div>
+
+        <div class="featured-content">
+          <div class="article-meta">
+            <span>July 26, 2026</span>
+            <span>•</span>
+            <span>5 Min Read</span>
+          </div>
+          <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="article-title-link" style="font-size: 1.75rem;">
+            How to Spin Up a Salesforce Marketing Cloud Next Org: SDO and Trailhead Playgrounds
+          </a>
+          <p class="article-excerpt">
+            Setting up a sandbox playground for Salesforce's new core-platform marketing cloud options is different from legacy Pardot or MC instances. Discover the two main free methods to Spin Up an Org: Partner Portal SDO templates and Trailhead module playgrounds.
+          </p>
+          <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="btn btn-primary">Read Article</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ARTICLES MATRIX GRID
+       ========================================================================== -->
+  <section style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="expertise-tabs">
+        <button class="tab-btn active" data-filter="all">All Articles</button>
+        <button class="tab-btn" data-filter="setup">Setup & SDO</button>
+        <button class="tab-btn" data-filter="migration">Migrations</button>
+        <button class="tab-btn" data-filter="strategy">RevOps Strategy</button>
+      </div>
+
+      <div class="article-grid">
+        <!-- Article Card 1 -->
+        <div class="article-card expertise-card" data-category="setup">
+          <div class="article-thumb">
+            <!-- Inline SVG Illustration -->
+            <svg style="width:100%; height:100%;" viewBox="0 0 400 200" fill="none">
+              <rect width="400" height="200" fill="#F1F5F9"/>
+              <rect x="50" y="40" width="300" height="120" rx="8" fill="#FFF" stroke="#E2E8F0" stroke-width="2"/>
+              <circle cx="100" cy="100" r="30" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/>
+              <path d="M90 100l8 8 12-12" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+              <rect x="150" y="80" width="160" height="12" rx="4" fill="#E2E8F0"/>
+              <rect x="150" y="105" width="100" height="10" rx="3" fill="#F1F5F9"/>
+            </svg>
+          </div>
+          <div class="article-content">
+            <div>
+              <div class="article-meta">
+                <span>July 26, 2026</span>
+                <span>•</span>
+                <span>5 Min Read</span>
+              </div>
+              <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="article-title-link">How to Spin Up a Salesforce Marketing Cloud Next Org</a>
+              <p class="article-excerpt">Step-by-step tutorial on provisioning partner SDO environments and utilizing temporary Trailhead playgrounds to explore next-gen core functionality.</p>
+            </div>
+            <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="read-more-btn">
+              Read Guide
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article Card 2 -->
+        <div class="article-card expertise-card" data-category="migration">
+          <div class="article-thumb">
+            <!-- Inline SVG Illustration -->
+            <svg style="width:100%; height:100%;" viewBox="0 0 400 200" fill="none">
+              <rect width="400" height="200" fill="#F1F5F9"/>
+              <circle cx="130" cy="100" r="30" fill="#FFF" stroke="#E2E8F0" stroke-width="2"/>
+              <circle cx="270" cy="100" r="30" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/>
+              <path d="M180 100h40M205 85l15 15-15 15" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="130" y="105" fill="#64748B" font-family="sans-serif" font-weight="700" font-size="12" text-anchor="middle">Pardot</text>
+              <text x="270" y="105" fill="#1E40AF" font-family="sans-serif" font-weight="700" font-size="12" text-anchor="middle">MC Next</text>
+            </svg>
+          </div>
+          <div class="article-content">
+            <div>
+              <div class="article-meta">
+                <span>July 25, 2026</span>
+                <span>•</span>
+                <span>7 Min Read</span>
+              </div>
+              <a href="./articles/migrating-from-pardot-to-marketing-cloud-next.html" class="article-title-link">Migrating from Pardot to Marketing Cloud Next: A Roadmap</a>
+              <p class="article-excerpt">Key migration blueprints, asset mapping protocols, and data modeling strategies to transition your B2B operations from Pardot to Core Salesforce Marketing.</p>
+            </div>
+            <a href="./articles/migrating-from-pardot-to-marketing-cloud-next.html" class="read-more-btn">
+              Read Guide
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER BOX -->
+      <div class="newsletter-card reveal-item">
+        <h3 class="service-box-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Join "Marketing Cloud Next" Newsletter</h3>
+        <p class="article-excerpt" style="margin-bottom: 1rem; max-width: 520px; margin-left: auto; margin-right: auto;">
+          Get actionable tutorials, CRM data flow schemas, and Salesforce strategy blueprints delivered to your inbox monthly.
+        </p>
+        <form class="newsletter-form" action="https://formspree.io/f/mnjeogjk" method="POST">
+          <input type="email" name="newsletterEmail" class="form-input" placeholder="Enter your work email" required style="flex-grow: 1;">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MINIMAL EXECUTIVE FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">GD</div>
+            <span>Ganesh Babu Dushyendiran</span>
+          </div>
+          <p class="footer-desc">
+            Senior Marketing Operations Architect & Salesforce Specialist. Transforming complex B2B martech stacks into scalable revenue engines.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#about">Executive Background</a></li>
+            <li><a href="../index.html#projects">Case Studies</a></li>
+            <li><a href="../index.html#expertise">Capabilities & Stack</a></li>
+            <li><a href="../index.html#certifications">Certifications</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Services & Case Studies</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#projects">Temenos Case Study</a></li>
+            <li><a href="../index.html#projects">HCLTech Migration</a></li>
+            <li><a href="../index.html#projects">RPM Carboline Rollout</a></li>
+            <li><a href="../index.html#certifications">Salesforce Certifications</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:ganeshbabu.dushy@gmail.com">ganeshbabu.dushy@gmail.com</a></li>
+            <li><a href="tel:+918508063729">+91 8508063729</a></li>
+            <li><a href="https://www.linkedin.com/in/ganesh-babu-d-6263b810a" target="_blank">LinkedIn Profile</a></li>
+            <li><a href="../GaneshBabuDushyendiran_Resume.pdf" target="_blank">Download Resume PDF</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Ganesh Babu Dushyendiran. All rights reserved.</span>
+        <span>Salesforce, Pardot, and Sales Cloud are registered trademarks of Salesforce, Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DISCOVERY CALL MODAL (Formspree Integration) -->
+  <div class="modal-overlay" id="discoveryModal">
+    <div class="modal-box">
+      <span class="modal-close" id="closeModal">&times;</span>
+      <h3 class="modal-title">Book a Free 30-Minute Strategy Call</h3>
+      <p class="modal-sub">Schedule a complimentary 30-minute 1-on-1 consultation with Ganesh to review your MarTech & RevOps architecture.</p>
+
+      <form action="https://formspree.io/f/mnjeogjk" method="POST" id="discoveryForm">
+        <div class="form-group">
+          <label class="form-label" for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="workEmail">Work Email</label>
+          <input type="email" id="workEmail" name="workEmail" class="form-input" placeholder="e.g. sarah@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="companyName">Company</label>
+          <input type="text" id="companyName" name="companyName" class="form-input" placeholder="e.g. Acme Corp" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="serviceInterest">Primary Discussion Topic</label>
+          <select id="serviceInterest" name="discussionTopic" class="form-select" required>
+            <option value="pardot">Salesforce Pardot Implementation / Migration</option>
+            <option value="abm">ABM Platforms (Demandbase & Dreamdata Setup)</option>
+            <option value="revops">Revenue Operations & Lead Lifecycle Design</option>
+            <option value="salesforce">Salesforce Sales Cloud Architecture</option>
+            <option value="hubspot">HubSpot CRM & Automation Setup</option>
+            <option value="ai">AI Enablement & Data Enrichment (Clay)</option>
+            <option value="audit">MarTech Stack Audit & Sync Optimization</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="projectOverview">Project Goals / Questions for Call</label>
+          <textarea id="projectOverview" name="projectOverview" class="form-textarea" rows="3" placeholder="Briefly share your current challenges or questions for our 30-minute call..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+          Schedule Free 30-Min Call
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modular Script File -->
+  <script src="../script.js"></script>
+</body>
+</html>
