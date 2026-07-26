@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Migrating from Pardot to Marketing Cloud Next: A Strategic Roadmap</title>
-  <meta name="description" content="A detailed roadmap and strategic migration framework to transition B2B Marketing Operations from legacy Pardot / Account Engagement to Salesforce Marketing Cloud Next (Growth/Advanced).">
-  <meta name="keywords" content="Pardot Migration, Marketing Cloud Next Migration, Account Engagement to Marketing Cloud Growth, Salesforce Data Cloud migration, B2B MarTech roadmap">
+  <title>Migrating from Pardot to Marketing Cloud Next: Architectural Comparison & 5-Phase Playbook</title>
+  <meta name="description" content="A comprehensive technical migration guide for B2B MarTech teams transitioning from Salesforce Account Engagement (Pardot) to Marketing Cloud Next (Growth/Advanced). Includes 4 detailed comparison tables and a 5-phase step-by-step checklist.">
+  <meta name="keywords" content="Pardot Migration, Marketing Cloud Next Migration, Account Engagement to Marketing Cloud Growth, Data Cloud DMO migration, Engagement Studio to Flow, B2BMA to CRMA">
   <meta name="author" content="Ganesh Babu Dushyendiran">
   
   <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Migrating from Pardot to Marketing Cloud Next - Ganesh Babu D">
-  <meta property="og:description" content="Discover key milestones, asset mapping, and CRM schema considerations for migrating from Pardot to Salesforce's core platform marketing.">
+  <meta property="og:title" content="Migrating from Pardot to Marketing Cloud Next - Architectural Comparison & Playbook">
+  <meta property="og:description" content="Master the migration from Pardot to Marketing Cloud Next with 4 architectural comparison matrices (Prospects vs DMOs, Engagement Studio vs Flows) and a 5-phase technical playbook.">
   <meta property="og:type" content="article">
   <meta property="og:image" content="../../Ganesh Image 1.png">
   
@@ -39,7 +39,7 @@
       transition: width 0.1s ease-out;
     }
     .article-container {
-      max-width: 780px;
+      max-width: 840px;
       margin: 0 auto;
       padding: 6rem 1.5rem 4rem 1.5rem;
     }
@@ -67,7 +67,7 @@
     }
     @media (min-width: 768px) {
       .article-h1 {
-        font-size: 3rem;
+        font-size: 2.85rem;
       }
     }
     .article-author-card {
@@ -103,7 +103,7 @@
       color: var(--text-tertiary);
     }
     .article-body {
-      font-size: 1.075rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
       line-height: 1.8;
     }
@@ -114,11 +114,13 @@
       font-size: 1.5rem;
       font-weight: 800;
       color: var(--text-primary);
-      margin: 2.5rem 0 1rem 0;
+      margin: 2.75rem 0 1rem 0;
       letter-spacing: -0.02em;
+      border-bottom: 2px solid var(--bg-accent-subtle);
+      padding-bottom: 0.5rem;
     }
     .article-body h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--text-primary);
       margin: 2rem 0 0.75rem 0;
@@ -135,6 +137,61 @@
       overflow: hidden;
       margin: 2rem 0;
       background-color: #FAF9F6;
+      padding: 1rem;
+    }
+    .code-badge {
+      font-family: var(--font-mono);
+      font-size: 0.825rem;
+      background-color: #EFF6FF;
+      color: #1E40AF;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .tech-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0 2rem 0;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-surface);
+      font-size: 0.925rem;
+      text-align: left;
+    }
+    .tech-table th {
+      background-color: var(--bg-subtle);
+      color: var(--text-primary);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 2px solid var(--border-strong);
+      white-space: nowrap;
+    }
+    .tech-table th:first-child {
+      width: 22%;
+    }
+    .tech-table th:nth-child(2) {
+      width: 39%;
+    }
+    .tech-table th:nth-child(3) {
+      width: 39%;
+    }
+    .tech-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    .tech-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tech-table tr:nth-child(even) {
+      background-color: #F8FAFC;
     }
     .callout-box {
       padding: 1.5rem;
@@ -142,10 +199,79 @@
       border-left: 4px solid var(--brand-accent);
       border-radius: 0 var(--radius-md) var(--radius-md) 0;
       margin: 2rem 0;
-      font-size: 1rem;
-      font-weight: 500;
+      font-size: 0.975rem;
       color: var(--text-primary);
     }
+    
+    /* Checklist Phase Card Styling */
+    .checklist-phase {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 1.75rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .checklist-phase-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--bg-accent-subtle);
+    }
+    .phase-badge {
+      background-color: var(--brand-primary);
+      color: #FFF;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+    }
+    .checklist-phase-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+    .checklist-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .checklist-checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid var(--brand-accent);
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--brand-accent);
+      cursor: pointer;
+    }
+    .checklist-label {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.975rem;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .checklist-note {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    
     .article-footer-cta {
       background-color: var(--bg-surface);
       border: 1px solid var(--border-strong);
@@ -247,8 +373,8 @@
        ========================================================================== -->
   <article class="article-container">
     <header class="article-header">
-      <span class="article-category">Migrations</span>
-      <h1 class="article-h1">Migrating from Pardot to Marketing Cloud Next: A Strategic Roadmap</h1>
+      <span class="article-category">Re-Platforming & Migrations</span>
+      <h1 class="article-h1">Migrating from Pardot to Marketing Cloud Next: Architectural Comparison & 5-Phase Playbook</h1>
       
       <div class="article-author-card">
         <div class="author-img">
@@ -256,83 +382,442 @@
         </div>
         <div class="author-info">
           <span class="author-name">Ganesh Babu Dushyendiran</span>
-          <span class="author-title">Senior MarTech Architect | July 25, 2026 • 7 Min Read</span>
+          <span class="author-title">Senior MarTech Architect | July 26, 2026 • 10 Min Read</span>
         </div>
       </div>
     </header>
 
     <div class="article-body">
       <p>
-        For nearly a decade, Salesforce Account Engagement (Pardot) has been the cornerstone of B2B marketing automation within the Salesforce ecosystem. However, Salesforce’s strategic focus has shifted to the core platform, unifying automation capabilities under the **Marketing Cloud Growth** and **Marketing Cloud Advanced** packages.
+        For over a decade, Salesforce Account Engagement (legacy Pardot) served as the default B2B marketing automation engine for Salesforce users. However, Salesforce has initiated a major technological paradigm shift by replacing legacy Pardot's standalone architecture with <strong>Marketing Cloud Next</strong> (productized as <strong>Marketing Cloud Growth</strong> and <strong>Marketing Cloud Advanced</strong>).
       </p>
       
       <p>
-        This transition is more than a rename — it is a complete replatforming. Legacy Pardot operates on its own backend database, syncing with Salesforce CRM using a connector bridge. Marketing Cloud Growth runs **natively** on Salesforce CRM using Data Cloud schemas, Flow Builder, and unified Einstein AI.
+        Transitioning to Marketing Cloud Next is not a simple "version upgrade" or UI facelift—it is a complete <strong>re-platforming</strong>. Legacy Pardot lives on an external PostgreSQL database connected to Salesforce CRM via an asynchronous sync connector. Marketing Cloud Next operates <strong>100% natively inside core Salesforce CRM</strong>, leveraging Data Cloud Data Model Objects (DMOs), Flow Builder, Salesforce CMS, and CRM Analytics.
       </p>
 
       <div class="illustration-box">
-        <!-- SVG diagram comparing legacy vs core MC Next -->
-        <svg style="width:100%; height:200px;" viewBox="0 0 800 200" fill="none">
-          <rect width="800" height="200" fill="#F8FAFC"/>
-          <!-- Legacy Model -->
-          <rect x="50" y="40" width="130" height="120" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="2"/>
-          <text x="115" y="105" fill="#64748B" font-family="sans-serif" font-weight="700" font-size="14" text-anchor="middle">Pardot DB</text>
+        <svg style="width:100%; height:210px;" viewBox="0 0 800 210" fill="none">
+          <rect width="800" height="210" fill="#F8FAFC"/>
           
-          <path d="M190 100h80" stroke="#EF4444" stroke-width="3" stroke-dasharray="6 6"/>
-          <text x="230" y="90" fill="#EF4444" font-family="sans-serif" font-weight="700" font-size="11" text-anchor="middle">Sync Bridge</text>
-          
-          <rect x="280" y="40" width="130" height="120" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="2"/>
-          <text x="345" y="105" fill="#64748B" font-family="sans-serif" font-weight="700" font-size="14" text-anchor="middle">Salesforce CRM</text>
-          
-          <!-- Unified Model -->
-          <rect x="490" y="40" width="260" height="120" rx="12" fill="#DBEAFE" stroke="#93C5FD" stroke-width="2"/>
-          <rect x="510" y="60" width="220" height="35" rx="6" fill="#1E40AF"/>
-          <text x="620" y="82" fill="#FFF" font-family="sans-serif" font-weight="700" font-size="12" text-anchor="middle">Core Platform CRM</text>
-          
-          <rect x="510" y="105" width="220" height="35" rx="6" fill="#EFF6FF" stroke="#3B82F6"/>
-          <text x="620" y="127" fill="#1E40AF" font-family="sans-serif" font-weight="700" font-size="12" text-anchor="middle">Data Cloud & MC Growth</text>
+          <!-- Legacy Architecture Block -->
+          <g transform="translate(40, 30)">
+            <rect width="320" height="150" rx="10" fill="#FFF" stroke="#CBD5E1" stroke-width="1.5"/>
+            <text x="160" y="30" fill="#0F172A" font-family="sans-serif" font-weight="800" font-size="13" text-anchor="middle">Legacy Pardot Architecture</text>
+            <rect x="20" y="48" width="120" height="40" rx="6" fill="#F1F5F9" stroke="#94A3B8"/>
+            <text x="80" y="73" fill="#334155" font-family="sans-serif" font-weight="700" font-size="11" text-anchor="middle">Pardot DB (Postgres)</text>
+            
+            <path d="M140 68 h40" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
+            <text x="160" y="60" fill="#EF4444" font-family="sans-serif" font-weight="700" font-size="9" text-anchor="middle">Sync Connector</text>
+            
+            <rect x="180" y="48" width="120" height="40" rx="6" fill="#F1F5F9" stroke="#94A3B8"/>
+            <text x="240" y="73" fill="#334155" font-family="sans-serif" font-weight="700" font-size="11" text-anchor="middle">Salesforce CRM</text>
+            
+            <rect x="20" y="100" width="280" height="34" rx="6" fill="#FEF2F2" stroke="#FCA5A5"/>
+            <text x="160" y="122" fill="#991B1B" font-family="sans-serif" font-size="10" text-anchor="middle">Sync delays, duplicate records & siloed analytics</text>
+          </g>
+
+          <!-- Native Unified Architecture Block -->
+          <g transform="translate(440, 30)">
+            <rect width="320" height="150" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/>
+            <text x="160" y="30" fill="#1E40AF" font-family="sans-serif" font-weight="800" font-size="13" text-anchor="middle">Marketing Cloud Next Architecture</text>
+            <rect x="20" y="48" width="280" height="42" rx="6" fill="#1E40AF"/>
+            <text x="160" y="74" fill="#FFF" font-family="sans-serif" font-weight="800" font-size="12" text-anchor="middle">Core Salesforce CRM Platform</text>
+            
+            <rect x="20" y="98" width="280" height="38" rx="6" fill="#FFF" stroke="#93C5FD"/>
+            <text x="160" y="122" fill="#1D4ED8" font-family="sans-serif" font-weight="700" font-size="11" text-anchor="middle">Data Cloud DMOs + Flow + CMS + CRMA</text>
+          </g>
         </svg>
       </div>
 
-      <h2>Three Major Architectural Differences to Master</h2>
+      <h2>1. Four Core Architectural Comparison Matrices</h2>
       <p>
-        Before migrating metadata or assets, your operations team must understand these fundamental architecture shifts:
-      </p>
-      
-      <h3>1. Prospects vs. Unified Contacts</h3>
-      <p>
-        In Pardot, your database consists of "Prospects" who must sync to Leads or Contacts in Salesforce. In Marketing Cloud Growth, there are no independent prospects. Segmentations run directly on **Unified Individual Profiles** inside Salesforce Data Cloud, drawing from your entire Salesforce Contact database and external systems.
-      </p>
-      
-      <h3>2. Engagement Studio vs. Salesforce Flows</h3>
-      <p>
-        Pardot's visual campaign builder, Engagement Studio, is replaced by Salesforce **Flow Builder** (specifically Campaign Journeys). Flows give you access to all core CRM objects and automation tools, eliminating the limitations of Pardot's strict step actions.
+        To execute a successful migration, marketing architects and RevOps leaders must understand how every legacy Pardot subsystem maps directly into Marketing Cloud Next core platform components.
       </p>
 
-      <h3>3. Content Builder vs. CMS Workspace</h3>
+      <h3>Matrix 1: Prospects vs. Unified Individual DMOs</h3>
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Architectural Dimension</th>
+              <th>Legacy Pardot (Account Engagement)</th>
+              <th>Marketing Cloud Next (Growth / Advanced)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Data Engine & Storage</strong></td>
+              <td>Proprietary PostgreSQL backend database connected via external Sync Connector.</td>
+              <td>Native <strong>Salesforce Data Cloud</strong> (Data Lake Objects & Data Model Objects).</td>
+            </tr>
+            <tr>
+              <td><strong>Object Model & Schema</strong></td>
+              <td><code class="code-badge">pi__Prospect__c</code> standalone entity syncing asynchronously to Lead/Contact.</td>
+              <td><code class="code-badge">Individual__dlm</code> & <code class="code-badge">UnifiedIndividual__dlm</code> directly on Core CRM platform.</td>
+            </tr>
+            <tr>
+              <td><strong>Identity Resolution</strong></td>
+              <td>Single Email Address deduplication key.</td>
+              <td>Multi-attribute Match & Merge rules (Email, Phone, CRM ID, Device ID) synthesizing unified profiles.</td>
+            </tr>
+            <tr>
+              <td><strong>Sync Mechanics</strong></td>
+              <td>Asynchronous Sync Connector bridge (subject to sync queues, errors, and delays).</td>
+              <td>Real-time native CRM object integration & Change Data Capture (CDC) streams.</td>
+            </tr>
+            <tr>
+              <td><strong>Custom Field Extensibility</strong></td>
+              <td>Pardot Custom Fields mapped 1:1 with Lead/Contact fields.</td>
+              <td>Flexible Data Model Objects (DMOs) mapped across unlimited core & external data sources.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Matrix 2: Engagement Studio vs. Flow Campaign Journeys</h3>
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Architectural Dimension</th>
+              <th>Legacy Pardot Engagement Studio</th>
+              <th>Marketing Cloud Next Flow Campaign Journeys</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Orchestration Engine</strong></td>
+              <td>Visual Engagement Studio Canvas inside Pardot app.</td>
+              <td>Native <strong>Salesforce Flow Builder</strong> (Flow Campaign Journeys).</td>
+            </tr>
+            <tr>
+              <td><strong>Trigger Mechanisms</strong></td>
+              <td>Static or Dynamic List membership entry triggers.</td>
+              <td>Real-time Data Cloud Segment membership, Record-Triggered, and Schedule-Triggered flows.</td>
+            </tr>
+            <tr>
+              <td><strong>CRM Object Access</strong></td>
+              <td>Strictly limited to Prospect, Account, Opportunity, and Pardot Custom Objects.</td>
+              <td>Full access to <strong>ALL</strong> Salesforce Core CRM Objects and Data Cloud DMOs.</td>
+            </tr>
+            <tr>
+              <td><strong>Branching & Action Logic</strong></td>
+              <td>Fixed Triggers (Rules), Evaluators, and standard Action steps.</td>
+              <td>Advanced Flow Decision Elements, Loops, Subflows, Apex Actions, and HTTP Callouts.</td>
+            </tr>
+            <tr>
+              <td><strong>Wait Steps & Execution Pauses</strong></td>
+              <td>Fixed Wait periods / "Up to X Days" evaluators.</td>
+              <td>Native Flow Pause Elements, Wait for Event, and Time-based Resume conditions.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Matrix 3: Pardot Forms vs. CMS Web Forms</h3>
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Architectural Dimension</th>
+              <th>Legacy Pardot Forms & Form Handlers</th>
+              <th>Marketing Cloud Next CMS Web Forms</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Form Builder Interface</strong></td>
+              <td>Legacy iFrame-based Pardot Form Builder & Layout Templates.</td>
+              <td>Native Salesforce <strong>CMS / Lightning Page Builder</strong> Components.</td>
+            </tr>
+            <tr>
+              <td><strong>Embedding & Web Delivery</strong></td>
+              <td>Embedded via HTML iFrames or external Form Handler endpoints.</td>
+              <td>Native Web Components (LWC), Experience Cloud site embeds, or direct Ingestion APIs.</td>
+            </tr>
+            <tr>
+              <td><strong>Field Mapping Destination</strong></td>
+              <td>Maps directly to Pardot Prospect fields.</td>
+              <td>Maps to CRM Lead/Contact objects or Data Cloud Ingestion APIs directly.</td>
+            </tr>
+            <tr>
+              <td><strong>Design & Styling Control</strong></td>
+              <td>Pardot Layout Templates (HTML/CSS wrapper around iFrame).</td>
+              <td>Standard Lightning Design System (SLDS), native CSS, and responsive component themes.</td>
+            </tr>
+            <tr>
+              <td><strong>Spam Protection & Validation</strong></td>
+              <td>Pardot Honeypot and reCAPTCHA v2 checkbox.</td>
+              <td>Native Salesforce reCAPTCHA v3, client-side LWCs, and Flow validation rules.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Matrix 4: B2BMA vs. CRM Analytics / Data Cloud Reports</h3>
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Architectural Dimension</th>
+              <th>Legacy B2B Marketing Analytics (B2BMA)</th>
+              <th>MC Next CRM Analytics & Data Cloud Reports</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Analytics Engine</strong></td>
+              <td>Dedicated Tableau CRM App pre-packaged for Pardot.</td>
+              <td>Native <strong>CRM Analytics (CRMA)</strong> & Data Cloud Direct Reporting.</td>
+            </tr>
+            <tr>
+              <td><strong>Data Ingestion & Source</strong></td>
+              <td>Pardot Replication API & CRM sync datasets.</td>
+              <td>Real-time Data Cloud DMOs, Flow Execution DMOs, and Unified CRM data.</td>
+            </tr>
+            <tr>
+              <td><strong>Customization Capabilities</strong></td>
+              <td>Pre-built B2BMA Datasets (Prospects, Campaigns, Email Events).</td>
+              <td>Customizable Lenses, SQL/SAQL queries across any core CRM object or DMO.</td>
+            </tr>
+            <tr>
+              <td><strong>Out-of-the-box Dashboards</strong></td>
+              <td>Pipeline Academy, Engagement, and Multi-Touch Attribution.</td>
+              <td>MC Growth Performance Dashboards, Einstein Engagement Analytics, and Real-time Attribution.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. The 5-Phase Step-by-Step Migration Playbook</h2>
       <p>
-        Pardot files, emails, and layouts move to the Salesforce **Unified Experience Cloud CMS** and native Content Builder. Email templates are built directly within the Salesforce lightning builder interface.
+        Executing a seamless migration requires a phased approach to prevent data loss, ensure uninterrupted lead flow, and maintain domain email deliverability.
       </p>
 
-      <h2>The 5-Step Migration Checklist</h2>
-      <ol>
-        <li><strong>Audit Existing Data:</strong> Archive prospects who have not engaged in over 365 days. Clean custom fields in Pardot to ensure you only map active, business-critical attributes.</li>
-        <li><strong>Set Up Unified CMS:</strong> Configure your Salesforce CMS channel first. Upload brand assets, logo files, and marketing media before drafting new email templates.</li>
-        <li><strong>Rebuild Lead Lifecycle in Flow:</strong> Translate your legacy Pardot scoring rules and automation rules into native Salesforce Flow automations.</li>
-        <li><strong>Establish Data Cloud Ingestion:</strong> Connect your core CRM Lead, Contact, and Campaign Member objects into Salesforce Data Cloud to enable real-time segment generation.</li>
-        <li><strong>Warm Your Sending Domain:</strong> IP addresses and sending reputation do not transfer directly. Begin sub-domain warming protocols in MC Next with low-volume, high-engagement campaigns.</li>
-      </ol>
+      <div class="illustration-box">
+        <svg style="width:100%; height:130px;" viewBox="0 0 800 130" fill="none">
+          <rect width="800" height="130" fill="#F8FAFC"/>
+          
+          <g transform="translate(20, 35)">
+            <!-- Phase 1 -->
+            <rect width="135" height="60" rx="8" fill="#1E40AF"/>
+            <text x="67" y="28" fill="#FFF" font-family="sans-serif" font-weight="800" font-size="11" text-anchor="middle">PHASE 1</text>
+            <text x="67" y="46" fill="#DBEAFE" font-family="sans-serif" font-size="10" text-anchor="middle">Audit & Cleanup</text>
+            <path d="M140 30 h15" stroke="#2563EB" stroke-width="2"/>
+
+            <!-- Phase 2 -->
+            <rect x="160" width="135" height="60" rx="8" fill="#1E40AF"/>
+            <text x="227" y="28" fill="#FFF" font-family="sans-serif" font-weight="800" font-size="11" text-anchor="middle">PHASE 2</text>
+            <text x="227" y="46" fill="#DBEAFE" font-family="sans-serif" font-size="10" text-anchor="middle">Schema & DMOs</text>
+            <path d="M300 30 h15" stroke="#2563EB" stroke-width="2"/>
+
+            <!-- Phase 3 -->
+            <rect x="320" width="135" height="60" rx="8" fill="#1E40AF"/>
+            <text x="387" y="28" fill="#FFF" font-family="sans-serif" font-weight="800" font-size="11" text-anchor="middle">PHASE 3</text>
+            <text x="387" y="46" fill="#DBEAFE" font-family="sans-serif" font-size="10" text-anchor="middle">Asset Migration</text>
+            <path d="M460 30 h15" stroke="#2563EB" stroke-width="2"/>
+
+            <!-- Phase 4 -->
+            <rect x="480" width="135" height="60" rx="8" fill="#1E40AF"/>
+            <text x="547" y="28" fill="#FFF" font-family="sans-serif" font-weight="800" font-size="11" text-anchor="middle">PHASE 4</text>
+            <text x="547" y="46" fill="#DBEAFE" font-family="sans-serif" font-size="10" text-anchor="middle">Flow Journeys</text>
+            <path d="M620 30 h15" stroke="#2563EB" stroke-width="2"/>
+
+            <!-- Phase 5 -->
+            <rect x="640" width="135" height="60" rx="8" fill="#1E40AF"/>
+            <text x="707" y="28" fill="#FFF" font-family="sans-serif" font-weight="800" font-size="11" text-anchor="middle">PHASE 5</text>
+            <text x="707" y="46" fill="#DBEAFE" font-family="sans-serif" font-size="10" text-anchor="middle">DNS & Go-Live</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Phase 1 Card -->
+      <div class="checklist-phase">
+        <div class="checklist-phase-header">
+          <span class="phase-badge">Phase 1</span>
+          <h3 class="checklist-phase-title">Pre-Migration Audit & Data Cleansing</h3>
+        </div>
+        
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p1-1">
+          <div>
+            <label for="p1-1" class="checklist-label">Audit & Archive Inactive Prospects</label>
+            <p class="checklist-note">Filter Pardot for prospects inactive >365 days with zero email engagement. Archive or hard delete them to prevent unnecessary Data Cloud record consumption.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p1-2">
+          <div>
+            <label for="p1-2" class="checklist-label">Custom Field Inventory & Rationalization</label>
+            <p class="checklist-note">Catalog all custom Pardot prospect fields. Deprecate legacy/unused attributes and document required CRM Lead and Contact custom field mappings.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p1-3">
+          <div>
+            <label for="p1-3" class="checklist-label">Asset & Automation Inventory</label>
+            <p class="checklist-note">Export lists of active Email Templates, Forms, Landing Pages, Form Handlers, and Engagement Studio programs to prioritize rebuild workflows.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 Card -->
+      <div class="checklist-phase">
+        <div class="checklist-phase-header">
+          <span class="phase-badge">Phase 2</span>
+          <h3 class="checklist-phase-title">Schema & Data Cloud Mapping</h3>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p2-1">
+          <div>
+            <label for="p2-1" class="checklist-label">Verify Core CRM Field Foundation</label>
+            <p class="checklist-note">Ensure all required lead attributes exist as standard or custom fields directly on the Salesforce <code class="code-badge">Lead</code> and <code class="code-badge">Contact</code> objects.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p2-2">
+          <div>
+            <label for="p2-2" class="checklist-label">Configure Data Cloud Data Streams</label>
+            <p class="checklist-note">Enable Salesforce CRM Data Streams for <code class="code-badge">Lead</code>, <code class="code-badge">Contact</code>, <code class="code-badge">Account</code>, <code class="code-badge">Campaign</code>, and <code class="code-badge">CampaignMember</code> objects.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p2-3">
+          <div>
+            <label for="p2-3" class="checklist-label">Map Data Model Objects (DMOs)</label>
+            <p class="checklist-note">Verify 1:1 field mappings from ingested stream fields to standard DMO targets: <code class="code-badge">Individual__dlm</code>, <code class="code-badge">ContactPointEmail__dlm</code>, <code class="code-badge">ContactPointPhone__dlm</code>, and <code class="code-badge">Account__dlm</code>.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p2-4">
+          <div>
+            <label for="p2-4" class="checklist-label">Establish Identity Resolution Match/Merge Rules</label>
+            <p class="checklist-note">Configure Match Rules (Email + Normalized First Name) to eliminate duplicates and synthesize source records into <code class="code-badge">UnifiedIndividual__dlm</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 Card -->
+      <div class="checklist-phase">
+        <div class="checklist-phase-header">
+          <span class="phase-badge">Phase 3</span>
+          <h3 class="checklist-phase-title">Asset & Content Migration</h3>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p3-1">
+          <div>
+            <label for="p3-1" class="checklist-label">Set Up Salesforce CMS Workspace</label>
+            <p class="checklist-note">Create a dedicated Marketing Workspace inside Salesforce CMS. Upload brand logos, image libraries, and PDF downloads.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p3-2">
+          <div>
+            <label for="p3-2" class="checklist-label">Rebuild Templates in Lightning Email Builder</label>
+            <p class="checklist-note">Re-create HTML email layouts directly inside the core Lightning Email Builder using CMS assets and dynamic merge fields.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p3-3">
+          <div>
+            <label for="p3-3" class="checklist-label">Rebuild Web Forms & Landing Pages</label>
+            <p class="checklist-note">Replace legacy Pardot iFrame forms with native CMS Web Forms, LWCs, or Experience Cloud landing page components.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 4 Card -->
+      <div class="checklist-phase">
+        <div class="checklist-phase-header">
+          <span class="phase-badge">Phase 4</span>
+          <h3 class="checklist-phase-title">Automation & Journey Re-Platforming</h3>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p4-1">
+          <div>
+            <label for="p4-1" class="checklist-label">Translate Pardot Automation Rules into Salesforce Flows</label>
+            <p class="checklist-note">Re-create background Pardot automation rules as Record-Triggered or Segment-Triggered <strong>Salesforce Flows</strong>.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p4-2">
+          <div>
+            <label for="p4-2" class="checklist-label">Re-platform Engagement Studio to Flow Campaign Journeys</label>
+            <p class="checklist-note">Translate visual Engagement Studio tree logic into native <strong>Flow Campaign Journeys</strong> with decision paths and pause elements.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p4-3">
+          <div>
+            <label for="p4-3" class="checklist-label">Configure Lead Scoring & Grading</label>
+            <p class="checklist-note">Replace legacy Pardot scoring with Einstein Lead Scoring or custom Flow-based scoring formulas stored directly on Lead/Contact CRM records.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 5 Card -->
+      <div class="checklist-phase">
+        <div class="checklist-phase-header">
+          <span class="phase-badge">Phase 5</span>
+          <h3 class="checklist-phase-title">Analytics & Domain Deliverability Protocol</h3>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p5-1">
+          <div>
+            <label for="p5-1" class="checklist-label">Configure DNS DKIM & SPF Sending Domains</label>
+            <p class="checklist-note">Add your sending sub-domain in Marketing Setup. Configure CNAME records (<code class="code-badge">res1</code>, <code class="code-badge">res2</code>) and TXT SPF records in your DNS provider.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p5-2">
+          <div>
+            <label for="p5-2" class="checklist-label">Execute 4-Week Sub-domain IP & Domain Warming</label>
+            <p class="checklist-note">Deploy low-volume, high-engagement automated emails first (e.g., password resets, welcome emails) to establish domain sender reputation.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p5-3">
+          <div>
+            <label for="p5-3" class="checklist-label">Validate CRM Analytics & Data Cloud Reports</label>
+            <p class="checklist-note">Activate out-of-the-box Marketing Cloud Analytics dashboards and validate multi-touch attribution metrics against legacy B2BMA data.</p>
+          </div>
+        </div>
+
+        <div class="checklist-item">
+          <input type="checkbox" class="checklist-checkbox" id="p5-4">
+          <div>
+            <label for="p5-4" class="checklist-label">Decommission Legacy Pardot Connector</label>
+            <p class="checklist-note">Pause the Pardot Sync Connector, archive historical Pardot databases, and revoke legacy Pardot user licenses.</p>
+          </div>
+        </div>
+      </div>
 
       <div class="callout-box">
-        <strong>Strategic Note:</strong> Do not attempt a quick lift-and-shift migration. Take this transition as an opportunity to restructure your campaign hierarchies and optimize dirty custom fields that have accumulated in your CRM over the years.
+        <strong>Architectural Recommendation:</strong> Running legacy Pardot and MC Next in parallel for a 30-day sandbox trial window allows your RevOps team to validate form completions and campaign attribution before fully cutting over.
       </div>
     </div>
 
     <!-- Article Footer CTA -->
     <div class="article-footer-cta">
-      <h3 class="author-name" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Migrating Your Enterprise Stack?</h3>
-      <p class="timeline-desc" style="margin-bottom: 1.5rem; max-width: 540px; margin-left: auto; margin-right: auto;">
-        I have led Pardot migrations involving 1M+ active records across global enterprise teams. Let's align your migration playbook in a free strategy call.
+      <h3 class="author-name" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Planning a Pardot to MC Next Migration?</h3>
+      <p class="timeline-desc" style="margin-bottom: 1.5rem; max-width: 560px; margin-left: auto; margin-right: auto;">
+        Migrating enterprise databases requires meticulous schema mapping, Flow design, and deliverability protocols. Book a free 30-minute consultation with Ganesh.
       </p>
       <button class="btn btn-primary open-modal">Book Free 30-Minute Call</button>
     </div>
@@ -342,13 +827,13 @@
       <h4 class="timeline-header" style="border:none; margin:0;">Next Up in Marketing Cloud Next</h4>
       <div class="related-grid">
         <div class="related-card">
-          <span class="article-category">Setup & SDO</span>
+          <span class="article-category">Setup & Sandboxes</span>
           <a href="./how-to-spin-up-marketing-cloud-next-org.html" class="related-title">
             How to Spin Up a Salesforce Marketing Cloud Next Org: SDO and Trailhead Playgrounds
           </a>
-          <span class="author-title">5 Min Read</span>
+          <span class="author-title">8 Min Read</span>
         </div>
-        <div class="related-card" style="background-color: var(--bg-main); opacity: 0.8;">
+        <div class="related-card" style="background-color: var(--bg-main); opacity: 0.85;">
           <span class="article-category">Strategy</span>
           <span class="related-title">
             [Upcoming] Designing Core Platform Lead Lifecycles with Data Cloud

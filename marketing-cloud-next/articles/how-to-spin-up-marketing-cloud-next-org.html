@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to Spin Up a Marketing Cloud Next Org: SDO and Trailhead Playgrounds</title>
-  <meta name="description" content="Step-by-step technical guide for Salesforce partners and developers to Spin Up a Salesforce Marketing Cloud Next (Growth/Advanced) org using SDO and temporary Trailhead playgrounds.">
-  <meta name="keywords" content="Marketing Cloud Next, Salesforce Marketing Cloud Growth, Spin Up MC Next Org, Salesforce Partner SDO, Trailhead Playground, MarTech Sandbox setup">
+  <title>How to Spin Up a Marketing Cloud Next Org: SDO & Trailhead Playground Guide</title>
+  <meta name="description" content="Complete step-by-step technical guide for Salesforce partners and developers to spin up a Marketing Cloud Next (Growth/Advanced) org, configure Data Cloud DMO mappings, assign permission sets, and set up DNS domain authentication.">
+  <meta name="keywords" content="Marketing Cloud Next, Salesforce Marketing Cloud Growth, Spin Up MC Next Org, Salesforce Partner SDO, Data Cloud DMO Mapping, DKIM SPF DNS, Permission Sets">
   <meta name="author" content="Ganesh Babu Dushyendiran">
   
   <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="How to Spin Up a Marketing Cloud Next Org - Ganesh Babu D">
-  <meta property="og:description" content="Learn how to provision a Salesforce Marketing Cloud Growth or Advanced sandbox playground using SDO templates or Trailhead.">
+  <meta property="og:title" content="How to Spin Up a Marketing Cloud Next Org - Technical Setup Guide">
+  <meta property="og:description" content="Step-by-step SDO provisioning, Data Cloud DMO mappings (Individual__dlm, ContactPointEmail__dlm), permission sets, and DNS domain verification for Marketing Cloud Next.">
   <meta property="og:type" content="article">
   <meta property="og:image" content="../../Ganesh Image 1.png">
   
@@ -39,7 +39,7 @@
       transition: width 0.1s ease-out;
     }
     .article-container {
-      max-width: 780px;
+      max-width: 840px;
       margin: 0 auto;
       padding: 6rem 1.5rem 4rem 1.5rem;
     }
@@ -67,7 +67,7 @@
     }
     @media (min-width: 768px) {
       .article-h1 {
-        font-size: 3rem;
+        font-size: 2.85rem;
       }
     }
     .article-author-card {
@@ -103,7 +103,7 @@
       color: var(--text-tertiary);
     }
     .article-body {
-      font-size: 1.075rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
       line-height: 1.8;
     }
@@ -114,11 +114,13 @@
       font-size: 1.5rem;
       font-weight: 800;
       color: var(--text-primary);
-      margin: 2.5rem 0 1rem 0;
+      margin: 2.75rem 0 1rem 0;
       letter-spacing: -0.02em;
+      border-bottom: 2px solid var(--bg-accent-subtle);
+      padding-bottom: 0.5rem;
     }
     .article-body h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--text-primary);
       margin: 2rem 0 0.75rem 0;
@@ -135,16 +137,64 @@
       overflow: hidden;
       margin: 2rem 0;
       background-color: #FAF9F6;
+      padding: 1rem;
     }
-    .code-block {
+    .code-badge {
+      font-family: var(--font-mono);
+      font-size: 0.825rem;
+      background-color: #EFF6FF;
+      color: #1E40AF;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #BFDBFE;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .dns-code-block {
       background-color: var(--text-primary);
       color: #F8FAFC;
       font-family: var(--font-mono);
-      font-size: 0.875rem;
-      padding: 1rem 1.5rem;
+      font-size: 0.85rem;
+      padding: 1rem 1.25rem;
       border-radius: var(--radius-md);
       overflow-x: auto;
-      margin: 1.5rem 0;
+      margin: 1rem 0 1.5rem 0;
+      border-left: 4px solid var(--brand-accent);
+      line-height: 1.6;
+    }
+    .tech-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0 2rem 0;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-surface);
+      font-size: 0.925rem;
+      text-align: left;
+    }
+    .tech-table th {
+      background-color: var(--bg-subtle);
+      color: var(--text-primary);
+      font-weight: 700;
+      padding: 0.85rem 1rem;
+      border-bottom: 2px solid var(--border-strong);
+      white-space: nowrap;
+    }
+    .tech-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    .tech-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tech-table tr:nth-child(even) {
+      background-color: #F8FAFC;
     }
     .callout-box {
       padding: 1.5rem;
@@ -152,9 +202,26 @@
       border-left: 4px solid var(--brand-accent);
       border-radius: 0 var(--radius-md) var(--radius-md) 0;
       margin: 2rem 0;
-      font-size: 1rem;
-      font-weight: 500;
+      font-size: 0.975rem;
       color: var(--text-primary);
+    }
+    .callout-box-warning {
+      background-color: #FFFBEB;
+      border-left-color: #F59E0B;
+      color: #78350F;
+    }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: var(--brand-accent);
+      color: #FFF;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-right: 0.5rem;
     }
     .article-footer-cta {
       background-color: var(--bg-surface);
@@ -266,95 +333,284 @@
         </div>
         <div class="author-info">
           <span class="author-name">Ganesh Babu Dushyendiran</span>
-          <span class="author-title">Senior MarTech Architect | July 26, 2026 • 5 Min Read</span>
+          <span class="author-title">Senior MarTech Architect | July 26, 2026 • 8 Min Read</span>
         </div>
       </div>
     </header>
 
     <div class="article-body">
       <p>
-        With Salesforce migrating its marketing systems to the core CRM infrastructure (via Data Cloud and Flow, previously referred to as **Marketing Cloud Next**, and officially productized as **Marketing Cloud Growth** and **Marketing Cloud Advanced**), MarTech administrators and consultants are facing a new sandbox challenge. 
+        Salesforce has fundamentally re-architected its marketing suite. With the introduction of <strong>Marketing Cloud Next</strong> (productized under the <strong>Marketing Cloud Growth</strong> and <strong>Marketing Cloud Advanced</strong> packages), marketing automation no longer sits on an external web application or asynchronous sync connector bridge.
       </p>
       
       <p>
-        Unlike legacy Pardot (which sat on a sync bridge) or SFMC (which lived on its own independent cloud stack), MC Next runs directly inside your core Salesforce CRM platform. Exploring this platform requires spinning up sandboxes that support these tools. In this guide, we outline the two primary methods to Spin Up a free testing environment.
+        Instead, MC Next runs <strong>natively directly inside core Salesforce CRM</strong>—powered by Salesforce Data Cloud, Flow Builder, Experience Cloud CMS, and Agentforce AI. This core-native paradigm requires administrators, architects, and developers to learn new sandbox provisioning workflows, permission set assignments, DMO schemas, and DNS authentication steps.
       </p>
 
       <div class="illustration-box">
-        <!-- SVG diagram of MC Next architecture -->
-        <svg style="width:100%; height:220px;" viewBox="0 0 800 220" fill="none">
-          <rect width="800" height="220" fill="#F8FAFC"/>
-          <!-- Core Platform Container -->
-          <rect x="50" y="30" width="700" height="160" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/>
-          <text x="70" y="60" fill="#1E40AF" font-family="sans-serif" font-weight="800" font-size="14">Salesforce Core Platform</text>
+        <svg style="width:100%; height:230px;" viewBox="0 0 800 230" fill="none">
+          <rect width="800" height="230" fill="#F8FAFC"/>
+          <!-- Core Container -->
+          <rect x="40" y="25" width="720" height="180" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="2"/>
+          <text x="60" y="52" fill="#1E40AF" font-family="sans-serif" font-weight="800" font-size="14">Salesforce Core Platform (MC Growth & Advanced Architecture)</text>
           
           <!-- Modules -->
-          <rect x="80" y="80" width="180" height="80" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="2"/>
-          <text x="170" y="125" fill="#0F172A" font-family="sans-serif" font-weight="700" font-size="13" text-anchor="middle">Data Cloud</text>
-          
-          <rect x="310" y="80" width="180" height="80" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="2"/>
-          <text x="400" y="125" fill="#0F172A" font-family="sans-serif" font-weight="700" font-size="13" text-anchor="middle">Flow Builder</text>
-          
-          <rect x="540" y="80" width="180" height="80" rx="8" fill="#DBEAFE" stroke="#93C5FD" stroke-width="2"/>
-          <text x="630" y="125" fill="#1E40AF" font-family="sans-serif" font-weight="800" font-size="13" text-anchor="middle">MC Growth / Advanced</text>
+          <g transform="translate(60, 70)">
+            <rect width="155" height="110" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="1.5"/>
+            <text x="77" y="35" fill="#0F172A" font-family="sans-serif" font-weight="700" font-size="13" text-anchor="middle">Data Cloud</text>
+            <text x="77" y="60" fill="#64748B" font-family="sans-serif" font-size="11" text-anchor="middle">Individual__dlm</text>
+            <text x="77" y="80" fill="#64748B" font-family="sans-serif" font-size="11" text-anchor="middle">ContactPointEmail__dlm</text>
+          </g>
+
+          <g transform="translate(235, 70)">
+            <rect width="155" height="110" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="1.5"/>
+            <text x="77" y="35" fill="#0F172A" font-family="sans-serif" font-weight="700" font-size="13" text-anchor="middle">Flow Builder</text>
+            <text x="77" y="60" fill="#64748B" font-family="sans-serif" font-size="11" text-anchor="middle">Campaign Journeys</text>
+            <text x="77" y="80" fill="#64748B" font-family="sans-serif" font-size="11" text-anchor="middle">Record-Triggered</text>
+          </g>
+
+          <g transform="translate(410, 70)">
+            <rect width="155" height="110" rx="8" fill="#FFF" stroke="#CBD5E1" stroke-width="1.5"/>
+            <text x="77" y="35" fill="#0F172A" font-family="sans-serif" font-weight="700" font-size="13" text-anchor="middle">Salesforce CMS</text>
+            <text x="77" y="60" fill="#64748B" font-family="sans-serif" font-size="11" text-anchor="middle">Lightning Emails</text>
+            <text x="77" y="80" fill="#64748B" font-family="sans-serif" font-size="11" text-anchor="middle">CMS Web Forms</text>
+          </g>
+
+          <g transform="translate(585, 70)">
+            <rect width="155" height="110" rx="8" fill="#DBEAFE" stroke="#93C5FD" stroke-width="2"/>
+            <text x="77" y="35" fill="#1E40AF" font-family="sans-serif" font-weight="800" font-size="13" text-anchor="middle">Agentforce AI</text>
+            <text x="77" y="60" fill="#1D4ED8" font-family="sans-serif" font-size="11" text-anchor="middle">Copilot Content</text>
+            <text x="77" y="80" fill="#1D4ED8" font-family="sans-serif" font-size="11" text-anchor="middle">Engagement Scoring</text>
+          </g>
         </svg>
       </div>
 
-      <h2>Method 1: Partner SDO (Simple Demo Org) Provisioning</h2>
+      <h2>1. Spinning Up an Org via Partner SDO (Simple Demo Org)</h2>
       <p>
-        If you are employed by a registered Salesforce Partner Organization, the absolute best way to explore MC Next is to spin up a **Partner Simple Demo Org (SDO)**. 
+        For Salesforce Consulting Partners, ISVs, and enterprise architects, the official route to evaluate Marketing Cloud Next is provisioning a <strong>Partner Simple Demo Org (SDO)</strong> through the Partner Portal. SDOs are pre-populated with standard CRM demo data, pre-configured Data Cloud engines, and active MC Growth/Advanced licenses.
       </p>
-      <p>
-        These demo templates come pre-configured with active licenses for Data Cloud, Flow, and Marketing Cloud Growth/Advanced.
-      </p>
-      
-      <h3>Step-by-Step Partner SDO Setup:</h3>
+
+      <h3>A. Partner Portal Provisioning Path</h3>
       <ol>
-        <li>Log into the **Salesforce Partner Community portal**.</li>
-        <li>Navigate to the **Demo Orgs** tab under the support console.</li>
-        <li>Select **"Create Demo Org"** and search for the template titled **"Marketing Cloud Growth / Advanced SDO"**.</li>
-        <li>Fill out your target email and username details.</li>
-        <li>Submit the request. Within 15–30 minutes, you will receive your login credential email for a fresh Salesforce org pre-populated with demo accounts, campaigns, and active MC Next configurations.</li>
+        <li>Access the <strong>Salesforce Partner Community</strong> at <code class="code-badge">partner.salesforce.com</code> and navigate to <strong>Demo Orgs</strong> or <strong>Environment Hub</strong>.</li>
+        <li>Select <strong>Create Demo Org</strong> and filter available templates by searching for <strong>"Marketing Cloud Growth / Advanced SDO"</strong>.</li>
+        <li>Enter your target Admin user email, org name, and unique domain prefix.</li>
+        <li>Submit the request. Provisioning completes in <strong>15 to 30 minutes</strong>, after which you receive admin credentials via email.</li>
       </ol>
 
-      <div class="callout-box">
-        <strong>Pro-Tip:</strong> Partner SDOs are valid for up to 365 days and can be refreshed or extended, making them the most stable sandbox environments for building proof-of-concepts (POCs) or customer demonstration scripts.
-      </div>
-
-      <h2>Method 2: Temporary Trailhead Playgrounds</h2>
-      <p>
-        If you are not an official Salesforce Partner, you can still access MC Next utilizing specialized Trailhead modules. Salesforce provides temporary sandbox environments to complete hands-on challenges.
-      </p>
-      
-      <h3>How to Spin Up a 3-Day Trailhead Playground:</h3>
-      <ol>
-        <li>Search for the Trailhead module titled **"Marketing Cloud Growth Setup Basics"** or **"Explore Marketing Cloud Advanced"**.</li>
-        <li>Scroll down to the hands-on challenge section at the bottom of the module.</li>
-        <li>In the playground launch dropdown, click **"Create Playground"** (ensure you select the specific template containing *Marketing Cloud Growth* licenses).</li>
-        <li>Salesforce will provision a dedicated Trailhead Playground in the background.</li>
-        <li>Click **Launch** to log in directly.</li>
-      </ol>
-
-      <div class="callout-box" style="background-color: #FFFBEB; border-left-color: #F59E0B; color: #78350F;">
-        <strong>Important License Warning:</strong> These Trailhead Playgrounds are only active for **3 days**. After 72 hours, the org will expire, and all custom configurations, automation flows, and content assets will be permanently deleted. Use these strictly for quick interface exploration and testing basic segmentations.
-      </div>
-
-      <h2>Summary Checklist for Your Next Sandbox Exploration</h2>
+      <p><strong>Core Auto-Provisioned Licenses Included in SDO:</strong></p>
       <ul>
-        <li>Verify that **Data Cloud** is provisioned and running in your org.</li>
-        <li>Check that your Salesforce user profile is assigned the **Marketing Cloud Admin** or **Marketing Manager** permission set.</li>
-        <li>Set up your **domain authentication** (DKIM/SPF) inside Setup → Marketing Setup to test email sends.</li>
+        <li><strong>Marketing Cloud Growth / Advanced Edition:</strong> Core platform package enabling campaign journeys, email builders, and landing pages.</li>
+        <li><strong>Data Cloud (Foundational SKU):</strong> Provisioned Data Engine with standard ingestion data streams and calculated insights credits.</li>
+        <li><strong>Salesforce CMS Workspace & Experience Cloud:</strong> Centralized digital asset management for image hosting and email template rendering.</li>
+        <li><strong>Agentforce & Einstein AI:</strong> GenAI copy generation, Einstein Engagement Scoring, and Copilot for Marketing.</li>
+        <li><strong>Sales & Service Cloud Enterprise Base:</strong> Standard Lead, Contact, Account, Opportunity, and Campaign CRM objects.</li>
       </ul>
+
+      <h3>B. Required Permission Sets & User Entitlements</h3>
       <p>
-        By leveraging SDOs or Trailhead playgrounds, you can safely experiment with the unified core platform without affecting production databases.
+        After logging into your newly provisioned SDO, navigate to <strong>Setup &rarr; Users &rarr; User Record &rarr; Permission Set Assignments</strong>. Assign the following critical permission sets to enable full system access:
       </p>
+
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Permission Set Name</th>
+              <th>Technical Function & Capabilities Granted</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="code-badge">Marketing Cloud Growth Admin</span> / <span class="code-badge">Manager</span></td>
+              <td>Grants administrative access to Marketing Setup, Email Builder, CMS Form Builder, Landing Page Builder, and Campaign Journeys.</td>
+            </tr>
+            <tr>
+              <td><span class="code-badge">Data Cloud Admin</span> / <span class="code-badge">Marketing Admin</span></td>
+              <td>Provides full access to Data Cloud Setup, Data Streams, DMO Mappings, Identity Resolution rules, and Segment creation.</td>
+            </tr>
+            <tr>
+              <td><span class="code-badge">Salesforce CMS Admin</span> / <span class="code-badge">Content Hub Admin</span></td>
+              <td>Grants permissions to manage CMS Workspaces, build image/asset repositories, and publish web channels for email/landing pages.</td>
+            </tr>
+            <tr>
+              <td><span class="code-badge">Manage Flow</span> & <span class="code-badge">Run Flows</span></td>
+              <td>Required to create, edit, activate, and orchestrate Record-Triggered and Segment-Triggered Flow Campaign Journeys.</td>
+            </tr>
+            <tr>
+              <td><span class="code-badge">Einstein Copilot / Agentforce User</span></td>
+              <td>Unlocks generative AI prompts for automatic email subject line generation, body copy draft generation, and segment descriptions.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Data Cloud & DMO Setup Step-by-Step</h2>
+      <p>
+        Because MC Next utilizes Data Cloud as its underlying profile engine, segmentations and email sends rely on standard <strong>Data Model Objects (DMOs)</strong> mapped from core CRM objects.
+      </p>
+
+      <h3>Step-by-Step Data Cloud Activation & Schema Mapping:</h3>
+      <ol>
+        <li>
+          <strong>Activate Data Cloud:</strong> Navigate to <strong>Setup &rarr; Data Cloud Setup</strong> and execute the 1-click <em>Get Started</em> wizard to instantiate the tenant engine.
+        </li>
+        <li>
+          <strong>Configure CRM Data Streams:</strong> Under the <strong>Data Streams</strong> tab, create standard Salesforce CRM streams for <code class="code-badge">Lead</code>, <code class="code-badge">Contact</code>, <code class="code-badge">Account</code>, and <code class="code-badge">CampaignMember</code> objects. Set refresh schedules to Real-time CDC or 15-minute incremental sync.
+        </li>
+        <li>
+          <strong>Map Objects to Standard DMOs:</strong> Map source CRM object attributes to target Data Cloud DMOs according to the schema table below.
+        </li>
+      </ol>
+
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Source CRM Object</th>
+              <th>Source Attribute</th>
+              <th>Target Data Cloud DMO</th>
+              <th>Target DMO Developer Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="code-badge">Lead</code> / <code class="code-badge">Contact</code></td>
+              <td>Id, FirstName, LastName, CreatedDate</td>
+              <td>Individual DMO</td>
+              <td><code class="code-badge">Individual__dlm</code></td>
+            </tr>
+            <tr>
+              <td><code class="code-badge">Lead</code> / <code class="code-badge">Contact</code></td>
+              <td>Email, HasOptedOutOfEmail</td>
+              <td>Contact Point Email DMO</td>
+              <td><code class="code-badge">ContactPointEmail__dlm</code></td>
+            </tr>
+            <tr>
+              <td><code class="code-badge">Lead</code> / <code class="code-badge">Contact</code></td>
+              <td>Phone, MobilePhone</td>
+              <td>Contact Point Phone DMO</td>
+              <td><code class="code-badge">ContactPointPhone__dlm</code></td>
+            </tr>
+            <tr>
+              <td><code class="code-badge">Account</code></td>
+              <td>Id, Name, Industry, AnnualRevenue</td>
+              <td>Account DMO</td>
+              <td><code class="code-badge">Account__dlm</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ol start="4">
+        <li>
+          <strong>Establish Identity Resolution Rules:</strong> In Data Cloud, configure Match Rules (e.g., <em>Exact Email Match</em> + <em>Normalized First Name</em>) and Merge Rules to synthesize fragmented Lead and Contact records into the unified master entity: <code class="code-badge">UnifiedIndividual__dlm</code>.
+        </li>
+        <li>
+          <strong>Configure Activation Targets:</strong> Create an Activation Target pointing to <strong>Marketing Cloud Growth / Flow Orchestration</strong> so Data Cloud segments can immediately trigger Flow Campaign Journeys.
+        </li>
+      </ol>
+
+      <h2>3. DNS DKIM & SPF Domain Authentication Guides</h2>
+      <p>
+        To achieve high email deliverability and satisfy DMARC policies, you must authenticate sending sub-domains in Marketing Cloud Next before deploying automated campaigns.
+      </p>
+
+      <h3>Step-by-Step Sending Domain Setup:</h3>
+      <ol>
+        <li>In Salesforce Core, navigate to <strong>Setup &rarr; Marketing Setup &rarr; Sending Domains</strong> (or Domain Management in Unified Setup).</li>
+        <li>Click <strong>Add Sending Domain</strong> and enter your designated sub-domain (e.g., <code class="code-badge">mail.yourcompany.com</code>).</li>
+        <li>Salesforce will generate specific DKIM CNAME keys and SPF TXT requirements. Add these exact records to your DNS provider (e.g., Cloudflare, Route53, GoDaddy):</li>
+      </ol>
+
+      <p><strong>DKIM CNAME Records (Selector 1 & Selector 2):</strong></p>
+      <div class="dns-code-block">
+# Selector CNAME Record 1
+Host / Name:  res1._domainkey.mail.yourcompany.com
+Target / Value: res1.salesforce.com
+
+# Selector CNAME Record 2
+Host / Name:  res2._domainkey.mail.yourcompany.com
+Target / Value: res2.salesforce.com
+      </div>
+
+      <p><strong>SPF TXT Record Configuration:</strong></p>
+      <div class="dns-code-block">
+# SPF TXT Record on Sending Sub-Domain
+Host / Name:  mail.yourcompany.com
+Record Type:  TXT
+Value:        v=spf1 include:salesforce.com ~all
+      </div>
+
+      <p>
+        <strong>Return-Path & DMARC Alignment:</strong> Set up the CNAME for your Return-Path domain to align with Salesforce mail servers. Once added, return to Salesforce Setup and click <strong>Verify Domain</strong>. Upon successful propagation, your sending domain status will display as <strong>Authenticated & Active</strong>.
+      </p>
+
+      <h2>4. Trailhead 3-Day Playground Setup & Technical Restrictions</h2>
+      <p>
+        If you do not have Partner Portal access, Salesforce provides hands-on <strong>Trailhead Playgrounds</strong> equipped with Marketing Cloud Growth licenses. While great for learning, administrators must understand several hard technical restrictions.
+      </p>
+
+      <h3>How to Spin Up a Trailhead Playground:</h3>
+      <ol>
+        <li>Log into Trailhead and navigate to modules like <em>"Marketing Cloud Growth Setup Basics"</em> or <em>"Get Started with Marketing Cloud Growth"</em>.</li>
+        <li>Scroll down to the Hands-On Challenge section.</li>
+        <li>From the playground dropdown menu, select <strong>"Create Playground with Marketing Cloud Growth"</strong>.</li>
+        <li>Wait 3–5 minutes while Salesforce provisions the environment, then click <strong>Launch</strong>.</li>
+      </ol>
+
+      <div class="callout-box callout-box-warning">
+        <strong>Critical Technical Limitations of Trailhead 3-Day Playgrounds:</strong>
+        <ul style="margin: 0.75rem 0 0 1.25rem;">
+          <li><strong>Hard 72-Hour Lifetime:</strong> The playground automatically expires and is permanently deleted after 72 hours (3 days). Extensions are not allowed.</li>
+          <li><strong>No Custom DNS Authentication:</strong> You cannot configure custom DKIM/SPF sending domains. All outbound test emails send from shared sandbox domains (<code class="code-badge">@salesforce-test.com</code>).</li>
+          <li><strong>10,000 Data Cloud Storage Cap:</strong> Data Cloud ingestion is restricted to a maximum storage cap of 10,000 records. Bulk stream connectors are disabled.</li>
+          <li><strong>Non-Exportable Assets:</strong> Email templates, forms, and flows created in playgrounds cannot be exported via Change Sets or Metadata API to production orgs.</li>
+          <li><strong>Execution Throttling:</strong> Flow executions and batch email distributions are rate-limited to prevent abuse.</li>
+        </ul>
+      </div>
+
+      <h2>Summary Checklist for Your MC Next Org Setup</h2>
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Milestone Phase</th>
+              <th>Key Action Item</th>
+              <th>Verification Criteria</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Provisioning</td>
+              <td>Create Partner SDO or Trailhead Playground</td>
+              <td>Received admin login credentials for Growth/Advanced SDO</td>
+            </tr>
+            <tr>
+              <td>2. Permissions</td>
+              <td>Assign MC Growth Admin, Data Cloud Admin, CMS Admin, Manage Flow</td>
+              <td>All setup menus and builders visible in App Launcher</td>
+            </tr>
+            <tr>
+              <td>3. Data Engine</td>
+              <td>Map CRM Lead/Contact to <code class="code-badge">Individual__dlm</code> & <code class="code-badge">ContactPointEmail__dlm</code></td>
+              <td>Data Cloud Identity Resolution synthesizing unified records</td>
+            </tr>
+            <tr>
+              <td>4. Deliverability</td>
+              <td>Add <code class="code-badge">res1</code>, <code class="code-badge">res2</code> CNAMEs & SPF TXT to DNS</td>
+              <td>Sending domain status shows Authenticated & Active</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Article Footer CTA -->
     <div class="article-footer-cta">
-      <h3 class="author-name" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Need Help Designing Your MC Next Architecture?</h3>
-      <p class="timeline-desc" style="margin-bottom: 1.5rem; max-width: 540px; margin-left: auto; margin-right: auto;">
-        Transitioning to core-platform marketing requires aligning Data Cloud, Flow, and Salesforce object models. Book a free 30-minute strategy call to map your transition.
+      <h3 class="author-name" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Need Technical Assistance Spinning Up Your MC Next Sandbox?</h3>
+      <p class="timeline-desc" style="margin-bottom: 1.5rem; max-width: 560px; margin-left: auto; margin-right: auto;">
+        From Data Cloud DMO mappings to custom sending domain verification, let's architect your sandbox environment cleanly. Book a free 30-minute consultation call.
       </p>
       <button class="btn btn-primary open-modal">Book Free 30-Minute Call</button>
     </div>
@@ -366,14 +622,14 @@
         <div class="related-card">
           <span class="article-category">Migrations</span>
           <a href="./migrating-from-pardot-to-marketing-cloud-next.html" class="related-title">
-            Migrating from Pardot to Marketing Cloud Next: A Strategic Roadmap
+            Migrating from Pardot to Marketing Cloud Next: Architectural Comparison & 5-Phase Playbook
           </a>
-          <span class="author-title">7 Min Read</span>
+          <span class="author-title">10 Min Read</span>
         </div>
-        <div class="related-card" style="background-color: var(--bg-main); opacity: 0.8;">
+        <div class="related-card" style="background-color: var(--bg-main); opacity: 0.85;">
           <span class="article-category">Strategy</span>
           <span class="related-title">
-            [Upcoming] Designing Core Platform Lead Lifecycles with Data Cloud
+            [Upcoming] Building High-Conversion CMS Web Forms & Flow Automations
           </span>
           <span class="author-title">Expected Q4 2026</span>
         </div>

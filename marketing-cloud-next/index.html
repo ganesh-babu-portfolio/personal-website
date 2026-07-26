@@ -21,163 +21,6 @@
   
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="../styles.css">
-  
-  <!-- Custom Hub Styles -->
-  <style>
-    .blog-hero {
-      padding: 6rem 0 3.5rem 0;
-      background: radial-gradient(circle at 10% 20%, rgba(219, 234, 254, 0.3) 0%, rgba(250, 250, 252, 0) 50%);
-    }
-    .featured-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-      align-items: center;
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      margin-bottom: 4rem;
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-    }
-    @media (min-width: 960px) {
-      .featured-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-      }
-    }
-    .featured-img-box {
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      height: 320px;
-      position: relative;
-      background-color: var(--bg-subtle);
-    }
-    .featured-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .featured-tag {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      z-index: 10;
-    }
-    .article-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-bottom: 5rem;
-    }
-    @media (min-width: 768px) {
-      .article-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    .article-card {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all var(--transition-normal);
-      box-shadow: var(--shadow-sm);
-    }
-    .article-card:hover {
-      border-color: var(--border-accent);
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-4px);
-    }
-    .article-thumb {
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-      background-color: var(--bg-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .article-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform var(--transition-normal);
-    }
-    .article-card:hover .article-thumb img {
-      transform: scale(1.03);
-    }
-    .article-content {
-      padding: 1.75rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .article-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.8rem;
-      color: var(--text-tertiary);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .article-title-link {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      line-height: 1.35;
-      margin-bottom: 0.75rem;
-      display: block;
-      transition: color var(--transition-fast);
-    }
-    .article-card:hover .article-title-link {
-      color: var(--brand-primary);
-    }
-    .article-excerpt {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      margin-bottom: 1.5rem;
-    }
-    .read-more-btn {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--brand-accent);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-    .read-more-btn svg {
-      transition: transform var(--transition-fast);
-    }
-    .article-card:hover .read-more-btn svg {
-      transform: translateX(3px);
-    }
-    .newsletter-card {
-      background: linear-gradient(135deg, var(--bg-accent-light) 0%, rgba(219, 234, 254, 0.2) 100%);
-      border: 1px solid var(--border-accent);
-      border-radius: var(--radius-lg);
-      padding: 3rem 2rem;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 5rem auto;
-    }
-    .newsletter-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      max-width: 480px;
-      margin: 1.5rem auto 0 auto;
-    }
-    @media (min-width: 640px) {
-      .newsletter-form {
-        flex-direction: row;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -237,6 +80,408 @@
         </p>
       </div>
 
+      <!-- ==========================================================================
+           CONTINUOUS HORIZONTAL CAROUSEL (BLOG HIGHLIGHTS)
+           ========================================================================== -->
+      <div class="blog-carousel-section reveal-item">
+        <div class="blog-carousel-header">
+          <div class="carousel-tag">
+            <span class="status-dot"></span> Blog Highlights & Architecture Deep Dives
+          </div>
+          <span class="carousel-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            Hover to pause auto-scroll • Click card to view
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </span>
+        </div>
+
+        <div class="blog-carousel-wrapper">
+          <div class="blog-carousel-track">
+            
+            <!-- CARD 1 -->
+            <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">SDO & Sandbox</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad1)"/>
+                  <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#EFF6FF"/>
+                      <stop offset="100%" stop-color="#DBEAFE"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="200" cy="100" r="65" fill="#FFFFFF" stroke="#93C5FD" stroke-width="2"/>
+                  <rect x="160" y="80" width="80" height="40" rx="8" fill="#1E40AF"/>
+                  <text x="200" y="104" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" text-anchor="middle">SDO ORG</text>
+                  <path d="M130 100h30M240 100h30" stroke="#2563EB" stroke-width="3" stroke-dasharray="4 4"/>
+                  <circle cx="120" cy="100" r="10" fill="#10B981"/>
+                  <circle cx="280" cy="100" r="10" fill="#F59E0B"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 26, 2026</span>
+                    <span class="carousel-readtime">⚡ 5 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">How to Spin Up a Salesforce Marketing Cloud Next Org</h3>
+                  <p class="carousel-excerpt">Step-by-step tutorial on provisioning partner SDO environments and Trailhead playgrounds.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Guide
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 2 -->
+            <a href="./articles/migrating-from-pardot-to-marketing-cloud-next.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">Pardot Migration</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad2)"/>
+                  <defs>
+                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F8FAFC"/>
+                      <stop offset="100%" stop-color="#EFF6FF"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="70" y="65" width="100" height="70" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+                  <text x="120" y="105" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" text-anchor="middle">Pardot</text>
+                  <path d="M185 100h30M200 88l15 12-15 12" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="230" y="65" width="100" height="70" rx="10" fill="#1E40AF"/>
+                  <text x="280" y="105" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13" text-anchor="middle">MC Next</text>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 25, 2026</span>
+                    <span class="carousel-readtime">⚡ 7 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Migrating from Pardot to Marketing Cloud Next: Roadmap</h3>
+                  <p class="carousel-excerpt">Asset mapping protocols, data model transitions, and execution blueprints for B2B ops.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Roadmap
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 3 -->
+            <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">Data Architecture</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad3)"/>
+                  <defs>
+                    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#EFF6FF"/>
+                      <stop offset="100%" stop-color="#E0F2FE"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="200" cy="100" r="45" fill="#0284C7"/>
+                  <text x="200" y="104" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" text-anchor="middle">DATA CLOUD</text>
+                  <path d="M200 40v15M200 145v15M140 100h-15M275 100h-15" stroke="#0284C7" stroke-width="2.5" stroke-dasharray="4 4"/>
+                  <circle cx="200" cy="30" r="8" fill="#38BDF8"/>
+                  <circle cx="200" cy="170" r="8" fill="#38BDF8"/>
+                  <circle cx="115" cy="100" r="8" fill="#38BDF8"/>
+                  <circle cx="285" cy="100" r="8" fill="#38BDF8"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 22, 2026</span>
+                    <span class="carousel-readtime">⚡ 6 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Data Cloud & MC Next Integration Masterclass</h3>
+                  <p class="carousel-excerpt">Unifying prospect profiles with real-time Data Cloud streams for hyper-personalized journeys.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Masterclass
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 4 -->
+            <a href="./articles/migrating-from-pardot-to-marketing-cloud-next.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">Growth Edition</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad4)"/>
+                  <defs>
+                    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ECFDF5"/>
+                      <stop offset="100%" stop-color="#D1FAE5"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="130" y="55" width="140" height="90" rx="8" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="2"/>
+                  <rect x="150" y="75" width="100" height="8" rx="4" fill="#059669"/>
+                  <rect x="150" y="93" width="75" height="6" rx="3" fill="#A7F3D0"/>
+                  <rect x="150" y="107" width="55" height="6" rx="3" fill="#A7F3D0"/>
+                  <circle cx="250" cy="125" r="16" fill="#059669"/>
+                  <path d="M244 125l4 4 8-8" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 18, 2026</span>
+                    <span class="carousel-readtime">⚡ 4 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Form Assembly & Lead Routing in Growth Edition</h3>
+                  <p class="carousel-excerpt">Optimizing landing page form captures and automated lead lifecycle assignments in Salesforce.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Guide
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 5 -->
+            <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">AI & Automation</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad5)"/>
+                  <defs>
+                    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F5F3FF"/>
+                      <stop offset="100%" stop-color="#EDE9FE"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="200" cy="100" r="50" fill="#7C3AED"/>
+                  <path d="M200 70l6 18 18 6-18 6-6 18-6-18-18-6 18-6z" fill="#FFFFFF"/>
+                  <circle cx="120" cy="70" r="14" fill="#C4B5FD"/>
+                  <circle cx="280" cy="130" r="14" fill="#C4B5FD"/>
+                  <path d="M134 70h30M236 130h30" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="3 3"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 15, 2026</span>
+                    <span class="carousel-readtime">⚡ 8 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Einstein Copilot & AI Workflows for MarTech Ops</h3>
+                  <p class="carousel-excerpt">Leveraging generative AI copilot for campaign copy, segment rules, and automated reporting.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Blueprint
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- DUPLICATED SET (CARDS 1-5) FOR CONTINUOUS INFINITE SCROLL -->
+
+            <!-- CARD 1 DUP -->
+            <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">SDO & Sandbox</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad1_d)"/>
+                  <defs>
+                    <linearGradient id="grad1_d" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#EFF6FF"/>
+                      <stop offset="100%" stop-color="#DBEAFE"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="200" cy="100" r="65" fill="#FFFFFF" stroke="#93C5FD" stroke-width="2"/>
+                  <rect x="160" y="80" width="80" height="40" rx="8" fill="#1E40AF"/>
+                  <text x="200" y="104" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" text-anchor="middle">SDO ORG</text>
+                  <path d="M130 100h30M240 100h30" stroke="#2563EB" stroke-width="3" stroke-dasharray="4 4"/>
+                  <circle cx="120" cy="100" r="10" fill="#10B981"/>
+                  <circle cx="280" cy="100" r="10" fill="#F59E0B"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 26, 2026</span>
+                    <span class="carousel-readtime">⚡ 5 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">How to Spin Up a Salesforce Marketing Cloud Next Org</h3>
+                  <p class="carousel-excerpt">Step-by-step tutorial on provisioning partner SDO environments and Trailhead playgrounds.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Guide
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 2 DUP -->
+            <a href="./articles/migrating-from-pardot-to-marketing-cloud-next.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">Pardot Migration</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad2_d)"/>
+                  <defs>
+                    <linearGradient id="grad2_d" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F8FAFC"/>
+                      <stop offset="100%" stop-color="#EFF6FF"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="70" y="65" width="100" height="70" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+                  <text x="120" y="105" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" text-anchor="middle">Pardot</text>
+                  <path d="M185 100h30M200 88l15 12-15 12" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="230" y="65" width="100" height="70" rx="10" fill="#1E40AF"/>
+                  <text x="280" y="105" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13" text-anchor="middle">MC Next</text>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 25, 2026</span>
+                    <span class="carousel-readtime">⚡ 7 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Migrating from Pardot to Marketing Cloud Next: Roadmap</h3>
+                  <p class="carousel-excerpt">Asset mapping protocols, data model transitions, and execution blueprints for B2B ops.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Roadmap
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 3 DUP -->
+            <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">Data Architecture</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad3_d)"/>
+                  <defs>
+                    <linearGradient id="grad3_d" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#EFF6FF"/>
+                      <stop offset="100%" stop-color="#E0F2FE"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="200" cy="100" r="45" fill="#0284C7"/>
+                  <text x="200" y="104" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" text-anchor="middle">DATA CLOUD</text>
+                  <path d="M200 40v15M200 145v15M140 100h-15M275 100h-15" stroke="#0284C7" stroke-width="2.5" stroke-dasharray="4 4"/>
+                  <circle cx="200" cy="30" r="8" fill="#38BDF8"/>
+                  <circle cx="200" cy="170" r="8" fill="#38BDF8"/>
+                  <circle cx="115" cy="100" r="8" fill="#38BDF8"/>
+                  <circle cx="285" cy="100" r="8" fill="#38BDF8"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 22, 2026</span>
+                    <span class="carousel-readtime">⚡ 6 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Data Cloud & MC Next Integration Masterclass</h3>
+                  <p class="carousel-excerpt">Unifying prospect profiles with real-time Data Cloud streams for hyper-personalized journeys.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Masterclass
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 4 DUP -->
+            <a href="./articles/migrating-from-pardot-to-marketing-cloud-next.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">Growth Edition</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad4_d)"/>
+                  <defs>
+                    <linearGradient id="grad4_d" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ECFDF5"/>
+                      <stop offset="100%" stop-color="#D1FAE5"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="130" y="55" width="140" height="90" rx="8" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="2"/>
+                  <rect x="150" y="75" width="100" height="8" rx="4" fill="#059669"/>
+                  <rect x="150" y="93" width="75" height="6" rx="3" fill="#A7F3D0"/>
+                  <rect x="150" y="107" width="55" height="6" rx="3" fill="#A7F3D0"/>
+                  <circle cx="250" cy="125" r="16" fill="#059669"/>
+                  <path d="M244 125l4 4 8-8" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 18, 2026</span>
+                    <span class="carousel-readtime">⚡ 4 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Form Assembly & Lead Routing in Growth Edition</h3>
+                  <p class="carousel-excerpt">Optimizing landing page form captures and automated lead lifecycle assignments in Salesforce.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Guide
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 5 DUP -->
+            <a href="./articles/how-to-spin-up-marketing-cloud-next-org.html" class="carousel-card">
+              <div class="carousel-graphic">
+                <span class="carousel-badge">AI & Automation</span>
+                <svg viewBox="0 0 400 200" fill="none">
+                  <rect width="400" height="200" fill="url(#grad5_d)"/>
+                  <defs>
+                    <linearGradient id="grad5_d" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F5F3FF"/>
+                      <stop offset="100%" stop-color="#EDE9FE"/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="200" cy="100" r="50" fill="#7C3AED"/>
+                  <path d="M200 70l6 18 18 6-18 6-6 18-6-18-18-6 18-6z" fill="#FFFFFF"/>
+                  <circle cx="120" cy="70" r="14" fill="#C4B5FD"/>
+                  <circle cx="280" cy="130" r="14" fill="#C4B5FD"/>
+                  <path d="M134 70h30M236 130h30" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="3 3"/>
+                </svg>
+              </div>
+              <div class="carousel-body">
+                <div>
+                  <div class="carousel-meta">
+                    <span>July 15, 2026</span>
+                    <span class="carousel-readtime">⚡ 8 Min Read</span>
+                  </div>
+                  <h3 class="carousel-title">Einstein Copilot & AI Workflows for MarTech Ops</h3>
+                  <p class="carousel-excerpt">Leveraging generative AI copilot for campaign copy, segment rules, and automated reporting.</p>
+                </div>
+                <div class="carousel-footer">
+                  <span class="carousel-link-btn">
+                    Read Blueprint
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
       <!-- FEATURED ARTICLE CARD -->
       <div class="featured-grid reveal-item">
         <div class="featured-img-box">
@@ -276,7 +521,7 @@
   <!-- ==========================================================================
        ARTICLES MATRIX GRID
        ========================================================================== -->
-  <section style="background-color: var(--bg-surface);">
+  <section style="background-color: var(--bg-surface); padding-top: 3.5rem;">
     <div class="container">
       <div class="expertise-tabs">
         <button class="tab-btn active" data-filter="all">All Articles</button>

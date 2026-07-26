@@ -1543,3 +1543,422 @@ footer {
   border-top: 1px solid var(--border-subtle);
   gap: 1rem;
 }
+
+/* --------------------------------------------------------------------------
+   14. Marketing Cloud Next Hub & Blog Carousel (Stripe / Linear Quality)
+   -------------------------------------------------------------------------- */
+.blog-hero {
+  padding: 5rem 0 3.5rem 0;
+  background: radial-gradient(circle at 10% 20%, rgba(219, 234, 254, 0.35) 0%, rgba(250, 250, 252, 0) 50%),
+              radial-gradient(circle at 90% 80%, rgba(239, 246, 255, 0.4) 0%, rgba(250, 250, 252, 0) 50%);
+}
+
+.blog-hero .section-header {
+  margin-bottom: 1.25rem; /* Tight, seamless spacing directly below hero description */
+}
+
+.blog-carousel-section {
+  position: relative;
+  width: 100%;
+  margin: 1.75rem 0 3.5rem 0;
+}
+
+.blog-carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding: 0 0.25rem;
+}
+
+.carousel-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand-primary);
+  background: var(--bg-accent-light);
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-accent);
+}
+
+.carousel-hint {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .carousel-hint {
+    display: none;
+  }
+}
+
+/* Continuous Horizontal Carousel Wrapper with Masked Gradient Edges */
+.blog-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.75rem 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+.blog-carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: carouselContinuousScroll 36s linear infinite;
+  will-change: transform;
+}
+
+/* Hover-pause interaction */
+.blog-carousel-wrapper:hover .blog-carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes carouselContinuousScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 0.75rem));
+  }
+}
+
+/* Stripe/Linear Style Carousel Cards */
+.carousel-card {
+  flex: 0 0 350px;
+  width: 350px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.carousel-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(37, 99, 235, 0.15);
+}
+
+.carousel-graphic {
+  height: 175px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-graphic svg {
+  width: 100%;
+  height: 100%;
+  transition: transform var(--transition-normal);
+}
+
+.carousel-card:hover .carousel-graphic svg {
+  transform: scale(1.04);
+}
+
+.carousel-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  color: var(--brand-primary);
+  border: 1px solid var(--border-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.carousel-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.carousel-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  margin-bottom: 0.65rem;
+}
+
+.carousel-readtime {
+  color: var(--brand-accent);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.carousel-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 0.65rem;
+  transition: color var(--transition-fast);
+}
+
+.carousel-card:hover .carousel-title {
+  color: var(--brand-primary);
+}
+
+.carousel-excerpt {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.carousel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
+
+.carousel-link-btn {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--transition-fast);
+}
+
+.carousel-card:hover .carousel-link-btn {
+  color: var(--brand-primary);
+}
+
+.carousel-link-btn svg {
+  transition: transform var(--transition-fast);
+}
+
+.carousel-card:hover .carousel-link-btn svg {
+  transform: translateX(4px);
+}
+
+/* Featured Grid & Hub Sections */
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 960px) {
+  .featured-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.featured-img-box {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  height: 320px;
+  position: relative;
+  background-color: var(--bg-subtle);
+}
+
+.featured-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.article-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.article-card:hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.article-thumb {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.article-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.article-card:hover .article-thumb img {
+  transform: scale(1.03);
+}
+
+.article-content {
+  padding: 1.75rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.article-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.article-title-link {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+  display: block;
+  transition: color var(--transition-fast);
+}
+
+.article-card:hover .article-title-link {
+  color: var(--brand-primary);
+}
+
+.article-excerpt {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.read-more-btn {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--brand-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.read-more-btn svg {
+  transition: transform var(--transition-fast);
+}
+
+.article-card:hover .read-more-btn svg {
+  transform: translateX(3px);
+}
+
+.newsletter-card {
+  background: linear-gradient(135deg, var(--bg-accent-light) 0%, rgba(219, 234, 254, 0.2) 100%);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 5rem auto;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 480px;
+  margin: 1.5rem auto 0 auto;
+}
+
+@media (min-width: 640px) {
+  .newsletter-form {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-card {
+    flex: 0 0 290px;
+    width: 290px;
+  }
+  .carousel-graphic {
+    height: 145px;
+  }
+  .carousel-body {
+    padding: 1.25rem;
+  }
+}
+
