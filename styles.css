@@ -1586,6 +1586,12 @@ footer {
   border: 1px solid var(--border-accent);
 }
 
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .carousel-hint {
   font-size: 0.8125rem;
   color: var(--text-tertiary);
@@ -1593,6 +1599,38 @@ footer {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+}
+
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carousel-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-nav-btn:hover {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+  transform: translateY(-1px);
+}
+
+.carousel-nav-btn:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 640px) {
@@ -1608,10 +1646,18 @@ footer {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.75rem 0;
+  scroll-behavior: smooth;
+  cursor: grab;
+  user-select: none;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE/Edge */
+}
+
+.blog-carousel-wrapper.active-drag {
+  cursor: grabbing;
+  scroll-behavior: auto;
 }
 
 .blog-carousel-wrapper::-webkit-scrollbar {

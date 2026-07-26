@@ -20,10 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Scroll Reveal Observer for Cards (Widgets)
-  const revealElements = document.querySelectorAll('.project-card, .expertise-card, .service-box, .cert-card, .timeline-item');
+  // 2. Scroll Reveal Observer for Cards & Sections
+  const revealElements = document.querySelectorAll('.reveal-item, .project-card, .expertise-card, .service-box, .cert-card, .timeline-item');
 
-  revealElements.forEach(el => el.classList.add('reveal-item'));
+  revealElements.forEach(el => {
+    if (!el.classList.contains('reveal-item')) {
+      el.classList.add('reveal-item');
+    }
+  });
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -33,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    threshold: 0.15,
+    threshold: 0.1,
     rootMargin: '0px 0px -40px 0px'
   });
 
@@ -185,6 +189,57 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
       }
+    });
+  }
+
+  // 8. Blog Carousel Interactive Controls (Prev/Next buttons & Drag-to-Scroll)
+  const carouselWrapper = document.querySelector('.blog-carousel-wrapper');
+  const prevBtn = document.getElementById('blogCarouselPrev');
+  const nextBtn = document.getElementById('blogCarouselNext');
+
+  if (carouselWrapper) {
+    const scrollAmount = 340;
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        carouselWrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        carouselWrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+    }
+
+    // Mouse Drag to Scroll Capability
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    carouselWrapper.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carouselWrapper.classList.add('active-drag');
+      startX = e.pageX - carouselWrapper.offsetLeft;
+      scrollLeft = carouselWrapper.scrollLeft;
+    });
+
+    carouselWrapper.addEventListener('mouseleave', () => {
+      isDown = false;
+      carouselWrapper.classList.remove('active-drag');
+    });
+
+    carouselWrapper.addEventListener('mouseup', () => {
+      isDown = false;
+      carouselWrapper.classList.remove('active-drag');
+    });
+
+    carouselWrapper.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carouselWrapper.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      carouselWrapper.scrollLeft = scrollLeft - walk;
     });
   }
 });
